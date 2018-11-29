@@ -1,0 +1,17 @@
+include ../../../node_modules/bemto.pug/bemto
+include ../components/mixins/mixins.pug
+
+<!DOCTYPE html>
+html(lang="ru")
+  include head
+  body
+    block header
+      include header
+    block content
+    block footer
+      include footer
+
+    //- script(src='<%= htmlWebpackPlugin.files.chunks.main.entry %>')
+    //- script(src='js/lib.js')
+    //- script(src='js/app.js' async)
+    script(src='js/script.js' async)
