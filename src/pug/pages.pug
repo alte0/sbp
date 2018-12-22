@@ -1,0 +1,9 @@
+extends template-pug/layout
+//- не забыть про отступ
+block head
+  - var pageTitle = 'All pages';
+block content
+  ul
+  each item in [{href: 'index', title: 'Главная'}, {href: 'index2', title: 'Главная 2'}]
+    li
+      a(href=item.href + '.html', target="_blank") #{item.title}

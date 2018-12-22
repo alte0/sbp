@@ -4,4 +4,4 @@ svg4everybody();
 
 require("./components/components");
 
-console.info(`main file`);
+console.info(`index file fwef`);

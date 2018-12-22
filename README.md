@@ -11,13 +11,13 @@
 ```
 ## Используемые технологии
 
-* менеджер пакетов и внешних зависимостей - [Npmjs](https://www.npmjs.com)
+* менеджер пакетов и внешних зависимостей - [npm](https://www.npmjs.com)
 * автоматическая сборка - [Gulp](http://gulpjs.com)
 * препроцессор CSS - [Sass](http://sass-lang.com)
 * шаблонизатор HTML - [Pug(ex-Jade)](https://pugjs.org/)
-* сборка js - [Webpack](https://webpack.js.org/)
-* транспилинг js в ES5 - [BabelJS](https://babeljs.io/)
-* рендеринг pug файлов в dev - [ExpressJS](http://expressjs.com/)
+* CSS-фреймворк - [Foundation](http://foundation.zurb.com)
+* динамика - [JQuery](http://jquery.com) и его плагины
+* набор иконок - [Font Awesome](http://fortawesome.github.io/Font-Awesome)
 
 ## Структура проекта
 
@@ -33,8 +33,6 @@ SBP/
 │   └── ...
 ├── .gitignore
 ├── gulpfile.js
-├── dev.config.js
-├── prod.config.js
 ├── package.json
 └── README.md
 ```
