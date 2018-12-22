@@ -56,7 +56,7 @@ gulp.task("isNoBs", function() {
 // ===========================================
 // include PATH SCSS Список путей для поиска файла (имя файла для поиска в style.scss)
 // ===========================================
-var sassPaths = ["./node_modules/slick-carousel/slick/"];
+// var sassPaths = [];
 // ===========================================
 // settings PATH
 // ===========================================
@@ -157,7 +157,8 @@ gulp.task("sass", function() {
     .pipe(gulpif(flags.bs, sourcemaps.init()))
     .pipe(gulpif(flags.minify, sassVars({ $minify: true })))
     .pipe(sassGlob())
-    .pipe(sass({ includePaths: sassPaths }).on("error", sass.logError))
+    // .pipe(sass({ includePaths: sassPaths }).on("error", sass.logError))
+    .pipe(sass().on("error", sass.logError))
     .pipe(
       autoprefixer({
         // browsers: ['last 2 versions', 'ie >= 10'],

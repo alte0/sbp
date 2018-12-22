@@ -12,9 +12,9 @@ $minify: false !default;
   $fontsPath: './fonts';
 }
 
-// @import "slick-theme.scss";
-
 @import "variables";
 @import "components/sprite/*";
 @import "components/**/*";
+
+@import "../../node_modules/slick-carousel/slick/slick.scss"
 
