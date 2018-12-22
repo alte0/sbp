@@ -18,6 +18,7 @@
 * CSS-фреймворк - [Foundation](http://foundation.zurb.com)
 * динамика - [JQuery](http://jquery.com) и его плагины
 * набор иконок - [Font Awesome](http://fortawesome.github.io/Font-Awesome)
+* Дополнительная поддержка SVG - [svg4everybody](https://github.com/jonathantneal/svg4everybody)
 
 ## Структура проекта
 
