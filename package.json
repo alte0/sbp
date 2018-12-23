@@ -1,6 +1,6 @@
 {
   "name": "sbp",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Стартовый сборшик проектов",
   "main": "gulpfile.js",
   "scripts": {
