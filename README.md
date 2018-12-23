@@ -1,5 +1,5 @@
 # Start build project (SBP)
-#### Работа со сборщиком коротко
+#### Работа со сборщиком коротко:
 ```sh
   "scripts": {
     "start": "gulp",
@@ -9,14 +9,20 @@
     "minify": "gulp minify"
   }
 ```
+#### Рекомендация по разработке:
+```sh
+  npm start или gulp dev - быстрая сборка проекта
+```
 ## Используемые технологии
 
-* менеджер пакетов и внешних зависимостей - [npm](https://www.npmjs.com)
-* автоматическая сборка - [Gulp](http://gulpjs.com)
-* препроцессор CSS - [Sass](http://sass-lang.com)
-* шаблонизатор HTML - [Pug(ex-Jade)](https://pugjs.org/)
-* CSS-фреймворк - [Foundation](http://foundation.zurb.com)
-* динамика - [JQuery](http://jquery.com) и его плагины
+* Менеджер пакетов и внешних зависимостей - [npm](https://www.npmjs.com)
+* Автоматическая сборка - [Gulp](http://gulpjs.com)
+* Препроцессор CSS - [Sass](http://sass-lang.com)
+* Шаблонизатор HTML - [Pug(ex-Jade)](https://pugjs.org/)
+* БЭМ-миксины для шаблонизатора Pug(ex-Jade) - [Bemto](https://github.com/kizu/bemto)
+* Run webpack as a stream to conveniently integrate with gulp. - [Webpack-stream](https://github.com/shama/webpack-stream)
+* Динамика - [JQuery](http://jquery.com)
+* Slick - the last carousel you'll ever need - [slick](https://github.com/kenwheeler/slick)
 * Дополнительная поддержка SVG - [svg4everybody](https://github.com/jonathantneal/svg4everybody)
 
 ## Структура проекта
@@ -31,6 +37,7 @@ SBP/
 │   └── ...
 ├── src/
 │   └── ...
+├── .editorconfig
 ├── .gitignore
 ├── gulpfile.js
 ├── package.json

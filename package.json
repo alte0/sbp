@@ -1,6 +1,6 @@
 {
   "name": "sbp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Стартовый сборшик проектов",
   "main": "gulpfile.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "zip": "gulp zip",
     "minify": "gulp minify"
   },
-  "author": "",
+  "author": "Dmitriev Maksim",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
@@ -25,10 +25,8 @@
     "browser-sync": "^2.26.3",
     "del": "^3.0.0",
     "express": "^4.16.4",
-    "fs": "0.0.1-security",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
-    "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.2",
     "gulp-debug": "^4.0.0",
     "gulp-if": "^2.0.2",
@@ -40,16 +38,13 @@
     "gulp-sass-glob": "^1.0.8",
     "gulp-sass-variables": "^1.1.1",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.1",
     "gulp-watch": "^5.0.1",
     "gulp-zip": "^4.2.0",
     "gulp.spritesmith": "^6.9.0",
     "imagemin-pngquant": "^6.0.0",
-    "jstransformer-uglify-js": "^1.2.0",
     "run-sequence": "^2.2.1",
     "serve-favicon": "^2.4.5",
     "svg4everybody": "^2.1.9",
-    "vinyl-buffer": "^1.0.1",
     "webpack": "^4.28.2",
     "webpack-dev-middleware": "^3.4.0",
     "webpack-stream": "^5.2.1"
