@@ -16,5 +16,19 @@ $minify: false !default;
 @import "components/sprite/*";
 @import "components/**/*";
 
-@import "../../node_modules/slick-carousel/slick/slick.scss"
+@import "../../node_modules/slick-carousel/slick/slick.scss";
 
+// .example-sprite {
+//   display: inline-block;
+//   border: 5px solid green;
+//   margin-bottom: 10px;
+//   margin-right: 10px;
+//   &-1 {
+//     // @include sprite($example-1);
+//     @include retina-sprite($example-1-group);
+//   }
+//   &-2 {
+//     // @include sprite($example-2);
+//     @include retina-sprite($example-2-group);
+//   }
+// }

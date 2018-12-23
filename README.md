@@ -91,11 +91,17 @@ $ npm run minify или gulp minify
 
 
 ## Для спрайтов
-Пример на scss:
+**Пример для одиночного спрайта на scss:**
 ```sh
 @include sprite($example-1);
 ```
 где ```$example-1``` имя файла: ```example-1.png``` .
+
+**Пример для ретина спрайта:**
+```sh
+@include retina-sprite($example-1-group);
+```
+где ```$example-1-group``` имя группы файлов: ```example-1.png```, ```example-1@2x.png``` .
 
 ## Общие принципы работы
 
