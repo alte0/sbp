@@ -24,6 +24,7 @@
 * Динамика - [JQuery](http://jquery.com)
 * Slick - the last carousel you'll ever need - [slick](https://github.com/kenwheeler/slick)
 * Дополнительная поддержка SVG - [svg4everybody](https://github.com/jonathantneal/svg4everybody)
+* Спрайты - [gulp.spritesmith](https://github.com/twolfson/gulp.spritesmith)
 
 ## Структура проекта
 
@@ -55,8 +56,10 @@ SBP/
 
 ## Установка и сборка проекта
 
-[Node.js](https://nodejs.org)**[(all releases)](https://nodejs.org/en/download/releases/)**.
-
+[Node.js](https://nodejs.org) **[(all releases)](https://nodejs.org/en/download/releases/)**.
+```sh 
+Рекомендуемая версия Node.js 8.x
+```
 
 #### Установите внешние зависимости
 ```sh
