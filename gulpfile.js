@@ -12,7 +12,7 @@ var pug = require('gulp-pug')
 var autoprefixer = require('gulp-autoprefixer')
 var del = require('del')
 var imagemin = require('gulp-imagemin')
-var pngquant = require('imagemin-pngquant')
+var buffer = require('vinyl-buffer')
 var plumber = require('gulp-plumber')
 var gulpif = require('gulp-if')
 var runSequence = require('run-sequence')
@@ -22,7 +22,6 @@ var sourcemaps = require('gulp-sourcemaps')
 var browserSync = require('browser-sync')
 var express = require('express')
 var favicon = require('serve-favicon')
-var newer = require('gulp-newer')
 var spritesmith = require('gulp.spritesmith')
 var app = express()
 var listener, port
@@ -119,21 +118,29 @@ gulp.task('clean-all', function() {
 gulp.task('sprites', function() {
   var fileNameSprite = 'sprite.png'
   var fileNameSprite2x = 'sprite@2x.png'
-  var spriteData = gulp.src(path.src.sprites).pipe(
-    spritesmith({
+  var spriteData = gulp
+    .src(path.src.sprites)
+    .pipe(plumber())
+    .pipe(
+      spritesmith({
         retinaSrcFilter: 'src/sprites-png/*@2x.png',
         imgName: fileNameSprite,
         retinaImgName: fileNameSprite2x,
         //.css, .sass, .scss, .less, .styl/.stylus
-        //ssFormat: 'scss', // с этой переменной нет ретины
+        //cssFormat: 'scss', // с этой переменной нет ретины
         cssName: 'sprite.scss',
         padding: 10,
         imgPath: '../images/sprite/' + fileNameSprite,
-        retinaImgPath : '../images/sprite/' + fileNameSprite2x
-    })
-  )
-  spriteData.img.pipe(gulp.dest(path.dist.sprite))
+        retinaImgPath: '../images/sprite/' + fileNameSprite2x
+      })
+    )
+
+  spriteData.img
+    .pipe(buffer())
+    .pipe(imagemin(imagemin.optipng({ optimizationLevel: 5 })))
+    .pipe(gulp.dest(path.dist.sprite))
   spriteData.css.pipe(gulp.dest('./src/scss/components/sprite/'))
+
   return spriteData
 })
 // ===========================================
@@ -227,14 +234,23 @@ gulp.task('images', function() {
   return gulp
     .src(path.src.images)
     .pipe(plumber())
-    .pipe(gulpif(flags.bs, newer(path.dist.images)))
     .pipe(
-      imagemin({
-        progressive: true,
-        svgoPlugins: [{ removeViewBox: false }],
-        use: [pngquant()],
-        interlaced: true
-      })
+      imagemin([
+        imagemin.gifsicle({ interlaced: true, optimizationLevel: 1 }),
+        imagemin.jpegtran({ progressive: true }),
+        imagemin.optipng({ optimizationLevel: 5 }),
+        imagemin.svgo({
+          plugins: [
+            { removeViewBox: true },
+            { cleanupAttrs: true },
+            { removeEmptyAttrs: true },
+            { removeComments: true },
+            { removeEditorsNSData: true },
+            { convertColors: true },
+            { cleanupIDs: false }
+          ]
+        })
+      ])
     )
     .pipe(gulp.dest(path.dist.images))
     .pipe(gulpif(flags.watch, browserSync.stream()))
@@ -246,7 +262,6 @@ gulp.task('i', function() {
   return gulp
     .src(path.src.i)
     .pipe(plumber())
-    .pipe(gulpif(flags.bs, newer(path.dist.i)))
     .pipe(gulp.dest(path.dist.i))
     .pipe(gulpif(flags.watch, browserSync.stream()))
 })
@@ -263,11 +278,12 @@ gulp.task('js:prod', function() {
   var webpackConfigProd = require('./prod.webpack.config.js')
   return gulp
     .src('./src/js/main.js')
+    .pipe(plumber())
     .pipe(webpackStream(webpackConfigProd, webpack))
     .pipe(gulp.dest(path.dist.js))
 })
 // webpackStream for development
-// js:dev не нужен он запускается в ExpressJs
+// js:dev не нужен, он запускается в ExpressJs
 // ===========================================
 // BrowserSync and settings
 // ===========================================
@@ -315,6 +331,7 @@ gulp.task('browser-sync', function() {
 gulp.task('zipArchive', function() {
   return gulp
     .src('dist/**/*.*')
+    .pipe(plumber())
     .pipe(zip('archive.zip'))
     .pipe(gulp.dest('dist'))
 })
@@ -326,19 +343,6 @@ gulp.task('watch', function() {
     watch([path.watch.css], function() {
       gulp.start('sass')
     })
-    // watch([path.watch.images], function(){
-    //   gulp.start('images');
-    // });
-    // watch([path.watch.i], function(){
-    //   gulp.start('i');
-    // });
-    // watch([path.watch.fonts], function(){
-    //   gulp.start('fonts');
-    // });
-    // watch([path.watch.js], function(){
-    //   // gulp.start('js-App');
-    //   gulp.start('js:dev');
-    // });
     watch([path.watch.sprites], function() {
       gulp.start('sprites')
     })
@@ -352,6 +356,15 @@ gulp.task('watch', function() {
     })
     watch([path.watch.js], function() {
       gulp.start('js:prod')
+    })
+    watch([path.watch.images], function() {
+      gulp.start('images')
+    })
+    watch([path.watch.i], function() {
+      gulp.start('i')
+    })
+    watch([path.watch.fonts], function() {
+      gulp.start('fonts')
     })
   }
 })
