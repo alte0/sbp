@@ -23,6 +23,7 @@ var browserSync = require('browser-sync')
 var express = require('express')
 var favicon = require('serve-favicon')
 var spritesmith = require('gulp.spritesmith')
+var svgSprite = require('gulp-svg-sprites')
 var app = express()
 var listener, port
 var webpack = require('webpack')
@@ -65,7 +66,8 @@ var path = {
     images: 'dist/images/',
     i: 'dist/i/',
     fonts: 'dist/fonts/',
-    sprite: 'dist/images/sprite'
+    sprite: 'dist/images/sprite',
+    spriteSvg: './dist/'
   },
   src: {
     html: 'src/pug/*.pug',
@@ -74,7 +76,8 @@ var path = {
     images: 'src/images/**/*.*',
     i: 'src/i/**/*.*',
     fonts: 'src/fonts/**/*.*',
-    sprites: 'src/sprites-png/*.png'
+    sprites: 'src/sprites-png/*.png',
+    spritesSvg: 'src/sprites-svg/*.svg'
   },
   watch: {
     // 'Path must be a string' for gulp-watch
@@ -84,7 +87,8 @@ var path = {
     images: 'src/images/**/*.*',
     i: 'src/i/**/*.*',
     fonts: 'src/fonts/**/*.*',
-    sprites: 'src/sprites-png/*.png'
+    sprites: 'src/sprites-png/*.png',
+    spritesSvg: 'src/sprites-svg/*.svg'
   },
   cleanFolder: './dist'
 }
@@ -142,6 +146,34 @@ gulp.task('sprites', function() {
   spriteData.css.pipe(gulp.dest('./src/scss/components/sprite/'))
 
   return spriteData
+})
+//  sprites SVG
+gulp.task('spritesSvg', function() {
+  return gulp.src(path.src.spritesSvg)
+    .pipe(
+      svgSprite({
+        /**
+         * By default, the class `icon` will be used as the common class.
+         * but you can chose your own here
+         */
+        mode: 'sprite',
+        common: 'icon',
+        // templates: {
+        //   scss: true // не валидный scss
+        // },
+        cssFile: '../src/scss/components/sprite/spriteSvg.scss',
+        svg: {
+            sprite: 'images/sprite/sprite.svg'
+        },
+        preview: true,
+        padding: 10,
+        /**
+         * Easily add
+         */
+        selector: 'svg-%f'
+      })
+    )
+    .pipe(gulp.dest(path.dist.spriteSvg))
 })
 // ===========================================
 // tasks SASS/SCSS
@@ -346,6 +378,9 @@ gulp.task('watch', function() {
     watch([path.watch.sprites], function() {
       gulp.start('sprites')
     })
+    watch([path.watch.spritesSvg], function() {
+      gulp.start('spritesSvg')
+    })
   } else {
     console.log('===> WATCHING - OFF!')
   }
@@ -378,7 +413,7 @@ gulp.task('default', function() {
   runSequence(
     'clean-all',
     'isNoBs',
-    ['sass', 'images', 'i', 'sprites', 'fonts', 'js:prod'],
+    ['sass', 'images', 'i', 'sprites', 'spritesSvg', 'fonts', 'js:prod'],
     'pug',
     'watch'
   )
@@ -386,7 +421,14 @@ gulp.task('default', function() {
 
 // js:dev не нужен он запускается в ExpressJs
 gulp.task('dev', function() {
-  runSequence('clean-all', ['sass', 'sprites', 'pug', 'watch', 'browser-sync'])
+  runSequence('clean-all', [
+    'sass',
+    'sprites',
+    'spritesSvg',
+    'pug',
+    'watch',
+    'browser-sync'
+  ])
 })
 
 gulp.task('minify', function() {
@@ -402,7 +444,7 @@ gulp.task('zip', function() {
     'clean-all',
     'isNoBs',
     'isNoWatch',
-    ['sass', 'images', 'i', 'sprites', 'fonts', 'js:prod'],
+    ['sass', 'images', 'i', 'sprites', 'spritesSvg', 'fonts', 'js:prod'],
     'pug',
     'zipArchive'
   )
