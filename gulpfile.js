@@ -5,6 +5,7 @@
 // ===========================================
 var gulp = require('gulp')
 var sass = require('gulp-sass')
+var gulpStylelint = require('gulp-stylelint')
 var sassGlob = require('gulp-sass-glob')
 var cssnano = require('gulp-cssnano')
 var sassVars = require('gulp-sass-variables')
@@ -143,13 +144,14 @@ gulp.task('sprites', function() {
     .pipe(buffer())
     .pipe(imagemin(imagemin.optipng({ optimizationLevel: 5 })))
     .pipe(gulp.dest(path.dist.sprite))
-  spriteData.css.pipe(gulp.dest('./src/scss/components/sprite/'))
+  spriteData.css.pipe(gulp.dest('./src/scss/sprite/'))
 
   return spriteData
 })
 //  sprites SVG
 gulp.task('spritesSvg', function() {
-  return gulp.src(path.src.spritesSvg)
+  return gulp
+    .src(path.src.spritesSvg)
     .pipe(
       svgSprite({
         /**
@@ -161,9 +163,9 @@ gulp.task('spritesSvg', function() {
         // templates: {
         //   scss: true // не валидный scss
         // },
-        cssFile: '../src/scss/components/sprite/spriteSvg.scss',
+        cssFile: '../src/scss/sprite/spriteSvg.scss',
         svg: {
-            sprite: 'images/sprite/sprite.svg'
+          sprite: 'images/sprite/sprite.svg'
         },
         preview: true,
         padding: 10,
@@ -180,24 +182,28 @@ gulp.task('spritesSvg', function() {
 // ===========================================
 gulp.task('sass', function() {
   return (
-    gulp
-      .src(path.src.css)
-      .pipe(plumber())
-      .pipe(gulpif(flags.bs, sourcemaps.init()))
-      .pipe(gulpif(flags.minify, sassVars({ $minify: true })))
-      .pipe(sassGlob())
-      // .pipe(sass({ includePaths: sassPaths }).on("error", sass.logError))
-      .pipe(sass().on('error', sass.logError))
-      .pipe(
-        autoprefixer({
-          // browsers: ['last 2 versions', 'ie >= 10'],
-          browsers: ['last 2 version', '> 1%', 'ie >= 10'],
-          cascade: false
-        })
-      )
-      .pipe(gulpif(flags.minify, cssnano()))
-      .pipe(gulpif(flags.bs, sourcemaps.write()))
-      .pipe(gulp.dest(path.dist.css))
+    gulp.src(path.src.css)
+        .pipe(plumber())
+        .pipe(gulpif(flags.bs, sourcemaps.init()))
+        .pipe(gulpif(flags.minify, sassVars({ $minify: true })))
+        .pipe(sassGlob())
+        // .pipe(sass({ includePaths: sassPaths }).on("error", sass.logError))
+        .pipe(gulpStylelint({
+            reporters: [
+                { formatter: 'string', console: true }
+            ]
+        }))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(
+            autoprefixer({
+                // browsers: ['last 2 versions', 'ie >= 10'],
+                browsers: ['last 2 version', '> 1%', 'ie >= 10'],
+                cascade: false
+            })
+        )
+        .pipe(gulpif(flags.minify, cssnano()))
+        .pipe(gulpif(flags.bs, sourcemaps.write()))
+        .pipe(gulp.dest(path.dist.css))
   )
 })
 // ===========================================
