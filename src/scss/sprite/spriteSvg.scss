@@ -8,7 +8,7 @@
     display: inline-block;
     background-image: url("../images/sprite/sprite.svg");
     background-repeat: no-repeat;
-    background-size: 4.2em 26.4em;
+    background-size: 2.2em 12.4em;
 }
 
 .no-svg .icon:before {
@@ -17,7 +17,7 @@
 
 
 
-  .icon.svg-arr-black:before {
+  .icon.arr-black:before {
       background-position: -1em -1em;
       width: 0.8em;
       height: 1.2em;
@@ -26,8 +26,8 @@
 
 
 
-  .icon.svg-arr-black-reversed:before {
-      background-position: -1em -4.2em;
+  .icon.arr-black-reversed:before {
+      background-position: -1em -2.2em;
       width: 0.8em;
       height: 1.2em;
   }
@@ -35,8 +35,8 @@
 
 
 
-  .icon.svg-arr-black:hover:before {
-      background-position: -1em -7.4em;
+  .icon.arr-black:hover:before {
+      background-position: -1em -3.4em;
       width: 0.8em;
       height: 1.2em;
   }
@@ -44,8 +44,8 @@
 
 
 
-  .icon.svg-facebook:before {
-      background-position: -1em -10.6em;
+  .icon.facebook:before {
+      background-position: -1em -4.6em;
       width: 2.2em;
       height: 2.2em;
   }
@@ -53,8 +53,8 @@
 
 
 
-  .icon.svg-facebook-white:before {
-      background-position: -1em -14.8em;
+  .icon.facebook-white:before {
+      background-position: -1em -6.8em;
       width: 2.2em;
       height: 2.2em;
   }
@@ -62,8 +62,8 @@
 
 
 
-  .icon.svg-facebook:active:before {
-      background-position: -1em -19em;
+  .icon.facebook:active:before {
+      background-position: -1em -9em;
       width: 2.2em;
       height: 2.2em;
   }
@@ -71,8 +71,8 @@
 
 
 
-  .icon.svg-facebook:hover:before {
-      background-position: -1em -23.2em;
+  .icon.facebook:hover:before {
+      background-position: -1em -11.2em;
       width: 2.2em;
       height: 2.2em;
   }

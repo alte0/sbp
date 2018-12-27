@@ -78,7 +78,8 @@ var path = {
     i: 'src/i/**/*.*',
     fonts: 'src/fonts/**/*.*',
     sprites: 'src/sprites-png/*.png',
-    spritesSvg: 'src/sprites-svg/*.svg'
+    spritesSvg: 'src/sprites-svg/*.svg',
+    spritesSymbolSvg: 'src/sprites-symbol-svg/*.svg'
   },
   watch: {
     // 'Path must be a string' for gulp-watch
@@ -89,9 +90,11 @@ var path = {
     i: 'src/i/**/*.*',
     fonts: 'src/fonts/**/*.*',
     sprites: 'src/sprites-png/*.png',
-    spritesSvg: 'src/sprites-svg/*.svg'
+    spritesSvg: 'src/sprites-svg/*.svg',
+    spritesSymbolSvg: 'src/sprites-symbol-svg/*.svg'
   },
-  cleanFolder: './dist'
+  cleanFolder: './dist',
+  cleanFolderSymbolSvg: './dist/svg'
 }
 // ===========================================
 // tasks CLEAN
@@ -116,6 +119,9 @@ gulp.task('clean-js', function() {
 })
 gulp.task('clean-all', function() {
   return del(path.cleanFolder)
+})
+gulp.task('clean-spritesSymbolSvg', function() {
+  return del(path.cleanFolderSymbolSvg)
 })
 // ===========================================
 // tasks sprites
@@ -149,7 +155,7 @@ gulp.task('sprites', function() {
   return spriteData
 })
 //  sprites SVG
-gulp.task('spritesSvg', function() {
+gulp.task('spritesSVG', function() {
   return gulp
     .src(path.src.spritesSvg)
     .pipe(
@@ -177,33 +183,41 @@ gulp.task('spritesSvg', function() {
     )
     .pipe(gulp.dest(path.dist.spriteSvg))
 })
+// symbols svg
+gulp.task('spritesSymbolsSVG', function() {
+  return gulp
+    .src(path.src.spritesSymbolSvg)
+    .pipe(svgSprite({ mode: 'symbols' }))
+    .pipe(gulp.dest(path.dist.spriteSvg))
+})
 // ===========================================
 // tasks SASS/SCSS
 // ===========================================
 gulp.task('sass', function() {
   return (
-    gulp.src(path.src.css)
-        .pipe(plumber())
-        .pipe(gulpif(flags.bs, sourcemaps.init()))
-        .pipe(gulpif(flags.minify, sassVars({ $minify: true })))
-        .pipe(sassGlob())
-        // .pipe(sass({ includePaths: sassPaths }).on("error", sass.logError))
-        .pipe(gulpStylelint({
-            reporters: [
-                { formatter: 'string', console: true }
-            ]
-        }))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(
-            autoprefixer({
-                // browsers: ['last 2 versions', 'ie >= 10'],
-                browsers: ['last 2 version', '> 1%', 'ie >= 10'],
-                cascade: false
-            })
-        )
-        .pipe(gulpif(flags.minify, cssnano()))
-        .pipe(gulpif(flags.bs, sourcemaps.write()))
-        .pipe(gulp.dest(path.dist.css))
+    gulp
+      .src(path.src.css)
+      .pipe(plumber())
+      .pipe(gulpif(flags.bs, sourcemaps.init()))
+      .pipe(gulpif(flags.minify, sassVars({ $minify: true })))
+      .pipe(sassGlob())
+      // .pipe(sass({ includePaths: sassPaths }).on("error", sass.logError))
+      .pipe(
+        gulpStylelint({
+          reporters: [{ formatter: 'string', console: true }]
+        })
+      )
+      .pipe(sass().on('error', sass.logError))
+      .pipe(
+        autoprefixer({
+          // browsers: ['last 2 versions', 'ie >= 10'],
+          browsers: ['last 2 version', '> 1%', 'ie >= 10'],
+          cascade: false
+        })
+      )
+      .pipe(gulpif(flags.minify, cssnano()))
+      .pipe(gulpif(flags.bs, sourcemaps.write()))
+      .pipe(gulp.dest(path.dist.css))
   )
 })
 // ===========================================
@@ -224,6 +238,7 @@ gulp.task('pug', function() {
     app.use('/images', express.static('src/images'))
     app.use('/images/sprite', express.static('dist/images/sprite'))
     app.use('/js', express.static('dist/js'))
+    app.use('/svg', express.static('dist/svg'))
     // Tell express to use the webpack-dev-middleware and use the webpack.config.js
     // configuration file as a base.
     var config = require('./dev.webpack.config.js')
@@ -385,7 +400,10 @@ gulp.task('watch', function() {
       gulp.start('sprites')
     })
     watch([path.watch.spritesSvg], function() {
-      gulp.start('spritesSvg')
+      gulp.start('spritesSVG')
+    })
+    watch([path.watch.spritesSymbolSvg], function() {
+      gulp.start('spritesSymbolsSVG')
     })
   } else {
     console.log('===> WATCHING - OFF!')
@@ -419,7 +437,16 @@ gulp.task('default', function() {
   runSequence(
     'clean-all',
     'isNoBs',
-    ['sass', 'images', 'i', 'sprites', 'spritesSvg', 'fonts', 'js:prod'],
+    [
+      'sass',
+      'images',
+      'i',
+      'sprites',
+      'spritesSVG',
+      'spritesSymbolsSVG',
+      'fonts',
+      'js:prod'
+    ],
     'pug',
     'watch'
   )
@@ -430,7 +457,8 @@ gulp.task('dev', function() {
   runSequence('clean-all', [
     'sass',
     'sprites',
-    'spritesSvg',
+    'spritesSVG',
+    'spritesSymbolsSVG',
     'pug',
     'watch',
     'browser-sync'
@@ -450,7 +478,16 @@ gulp.task('zip', function() {
     'clean-all',
     'isNoBs',
     'isNoWatch',
-    ['sass', 'images', 'i', 'sprites', 'spritesSvg', 'fonts', 'js:prod'],
+    [
+      'sass',
+      'images',
+      'i',
+      'sprites',
+      'spritesSVG',
+      'spritesSymbolsSVG',
+      'fonts',
+      'js:prod'
+    ],
     'pug',
     'zipArchive'
   )

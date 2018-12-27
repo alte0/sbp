@@ -110,6 +110,9 @@ extend .icon.svg-arr-black;
 где ```.icon``` обшее имя svg спрайтов, а ```arr-black``` это имя файла. 
 Для ```:hover``` или ```:active``` в имени файла нужно указать ```~ (тильду)```, ппример: ```facebook~active.svg```
 
+**Пример для symbol SVG спрайта:**
+```<svg class="cloud"><use xlink:href="svg/symbols.svg#cloud-computing"></use></svg>``` где ```#cloud-computing``` имя файла svg
+
 ## Общие принципы работы
 
 ```
