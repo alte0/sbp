@@ -13,7 +13,7 @@
 ```sh
   npm start или gulp dev - быстрая сборка проекта
 ```
-## Используемые технологии
+### Используемые технологии
 
 * Менеджер пакетов и внешних зависимостей - [npm](https://www.npmjs.com)
 * Автоматическая сборка - [Gulp](http://gulpjs.com)
@@ -26,7 +26,7 @@
 * Дополнительная поддержка SVG - [svg4everybody](https://github.com/jonathantneal/svg4everybody)
 * Спрайты - [gulp.spritesmith](https://github.com/twolfson/gulp.spritesmith)
 
-## Структура проекта
+### Структура проекта
 
 ```
 SBP/
@@ -54,18 +54,18 @@ SBP/
 В файле *gulpfile.js* содержатся правила для сборки проекта из исходников *src* в результат *dist*.
 
 
-## Установка и сборка проекта
+### Установка и сборка проекта
 
 [Node.js](https://nodejs.org) **[(all releases)](https://nodejs.org/en/download/releases/)**.
 ```sh 
 Рекомендуемая версия Node.js 8.x
 ```
 
-#### Установите внешние зависимости
+### Установите внешние зависимости
 ```sh
 $ npm install или npm i
 ```
-#### Работа со сборщиком
+### Работа со сборщиком
 разработка с наблюдением за файлами
 ```sh
 $ npm start или gulp
@@ -90,7 +90,7 @@ $ npm run minify или gulp minify
 В результате создастся папка *dist*, в которой окажутся готовые для дальнейшего использования html-файлы.
 
 
-## Для спрайтов
+### Для спрайтов
 **Пример для одиночного спрайта на scss:**
 ```sh
 @include sprite($example-1);
@@ -105,7 +105,7 @@ $ npm run minify или gulp minify
 
 **Пример для SVG спрайта:**
 ```sh
-extend .icon.svg-arr-black;
+.icon.svg-arr-black;
 ```
 где ```.icon``` обшее имя svg спрайтов, а ```arr-black``` это имя файла. 
 Для ```:hover``` или ```:active``` в имени файла нужно указать ```~ (тильду)```, ппример: ```facebook~active.svg```
