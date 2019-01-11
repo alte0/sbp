@@ -14,7 +14,7 @@ $minify: false !default;
 
 @import "variables";
 @import "sprite/sprite.scss";
-@import "./sprite/spriteSvg.scss";
+@import "sprite/spriteSvg.scss";
 @import "components/**/*";
 @import "../../node_modules/slick-carousel/slick/slick.scss";
 

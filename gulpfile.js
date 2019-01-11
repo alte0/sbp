@@ -438,6 +438,11 @@ gulp.task('default', function() {
     'clean-all',
     'isNoBs',
     [
+    'sprites',
+    'spritesSVG',
+    'spritesSymbolsSVG'
+    ],
+    [
       'sass',
       'images',
       'i',
@@ -454,11 +459,15 @@ gulp.task('default', function() {
 
 // js:dev не нужен он запускается в ExpressJs
 gulp.task('dev', function() {
-  runSequence('clean-all', [
-    'sass',
+  runSequence(
+    'clean-all',
+    [
     'sprites',
     'spritesSVG',
-    'spritesSymbolsSVG',
+    'spritesSymbolsSVG'
+    ],
+    [
+    'sass',
     'pug',
     'watch',
     'browser-sync'
@@ -479,12 +488,14 @@ gulp.task('zip', function() {
     'isNoBs',
     'isNoWatch',
     [
+    'sprites',
+    'spritesSVG',
+    'spritesSymbolsSVG'
+    ],
+    [
       'sass',
       'images',
       'i',
-      'sprites',
-      'spritesSVG',
-      'spritesSymbolsSVG',
       'fonts',
       'js:prod'
     ],

@@ -3,15 +3,15 @@
 ```sh
   "scripts": {
     "start": "gulp",
-    "dev": "gulp dev",
-    "build": "gulp build",
+    "build:dev": "gulp dev",
+    "build:prod": "gulp build",
     "zip": "gulp zip",
     "minify": "gulp minify"
   }
 ```
 #### Рекомендация по разработке:
 ```sh
-  npm start или gulp dev - быстрая сборка проекта
+  npm build:dev или gulp dev - быстрая сборка проекта
 ```
 ### Используемые технологии
 

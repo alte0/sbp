@@ -1,27 +1,33 @@
 module.exports = {
-  mode: "development",
-  entry: ["./src/js/main.js"],
+  mode: 'development',
+  entry: ['./src/js/main.js'],
   output: {
-    filename: "js/script.js",
+    filename: 'js/script.js',
+    chunkFilename: 'js/vendor.bundle.js'
   },
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   devServer: {
-    hotOnly: true,
+    hotOnly: true
   },
   module: {
     // exclude исключить
     rules: [
-        {
-            enforce: "pre",
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: "eslint-loader",
-        },
-        {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: "babel-loader",
-        },
-    ],
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }
+    ]
   },
-};
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  }
+}
