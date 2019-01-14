@@ -1,12 +1,15 @@
 # Start build project (SBP)
 #### Работа со сборщиком коротко:
 ```sh
+Установить: npm install --global gulp-cli
+```
+```sh
   "scripts": {
     "start": "gulp",
-    "build:dev": "gulp dev",
-    "build:prod": "gulp build",
-    "zip": "gulp zip",
-    "minify": "gulp minify"
+    "sbp:dev": "gulp dev",
+    "sbp:prod": "gulp build",
+    "sbp:zip": "gulp zip",
+    "sbp:minify": "gulp minify"
   }
 ```
 #### Рекомендация по разработке:
@@ -16,7 +19,7 @@
 ### Используемые технологии
 
 * Менеджер пакетов и внешних зависимостей - [npm](https://www.npmjs.com)
-* Автоматическая сборка - [Gulp](http://gulpjs.com)
+* Автоматическая сборка - [Gulp 4](http://gulpjs.com)
 * Препроцессор CSS - [Sass](http://sass-lang.com)
 * Шаблонизатор HTML - [Pug(ex-Jade)](https://pugjs.org/)
 * БЭМ-миксины для шаблонизатора Pug(ex-Jade) - [Bemto](https://github.com/kizu/bemto)
@@ -58,7 +61,8 @@ SBP/
 
 [Node.js](https://nodejs.org) **[(all releases)](https://nodejs.org/en/download/releases/)**.
 ```sh 
-Рекомендуемая версия Node.js 8.x
+Рекомендуемая версия >= Node.js 8.x
+Рекомендуемая версия >= NPM 5.6.0"
 ```
 
 ### Установите внешние зависимости

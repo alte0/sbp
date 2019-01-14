@@ -1,17 +1,25 @@
 {
   "name": "sbp",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "description": "Стартовый сборшик проектов",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
-    "build:dev": "gulp dev",
-    "build:prod": "gulp build",
-    "zip": "gulp zip",
-    "minify": "gulp minify"
+    "sbp:dev": "gulp dev",
+    "sbp:prod": "gulp build",
+    "sbp:zip": "gulp zip",
+    "sbp:minify": "gulp minify"
   },
-  "author": "Dmitriev Maksim",
-  "license": "UNLICENSED",
+  "author": "Dmitriev Maksim and other people",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alte0/sbp.git"
+  },
+  "engines": {
+    "node": ">= 8.11.1 <9.0.0",
+    "npm": ">= 5.6.0"
+  },
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "jquery": "^3.2.1",
@@ -32,10 +40,11 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "express": "^4.16.4",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-debug": "^4.0.0",
+    "gulp-hub": "^4.2.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^5.0.3",
     "gulp-plumber": "^1.2.1",
@@ -49,7 +58,6 @@
     "gulp-watch": "^5.0.1",
     "gulp-zip": "^4.2.0",
     "gulp.spritesmith": "^6.9.0",
-    "run-sequence": "^2.2.1",
     "serve-favicon": "^2.4.5",
     "stylelint": "^9.9.0",
     "stylelint-config-recommended-scss": "^3.2.0",
