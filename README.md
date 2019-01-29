@@ -1,7 +1,8 @@
 # Start build project (SBP)
 #### Работа со сборщиком коротко:
 ```sh
-Установить: npm install --global gulp-cli
+Установить gulp-cli: npm i --g gulp-cli
+Установить зависимости: npm i
 ```
 ```sh
   "scripts": {
@@ -14,7 +15,7 @@
 ```
 #### Рекомендация по разработке:
 ```sh
-  npm build:dev или gulp dev - быстрая сборка проекта
+  npm sbp:dev или gulp dev - быстрая сборка проекта
 ```
 ### Используемые технологии
 
@@ -24,10 +25,11 @@
 * Шаблонизатор HTML - [Pug(ex-Jade)](https://pugjs.org/)
 * БЭМ-миксины для шаблонизатора Pug(ex-Jade) - [Bemto](https://github.com/kizu/bemto)
 * Run webpack as a stream to conveniently integrate with gulp. - [Webpack-stream](https://github.com/shama/webpack-stream)
-* Динамика - [JQuery](http://jquery.com)
-* Slick - the last carousel you'll ever need - [slick](https://github.com/kenwheeler/slick)
-* Дополнительная поддержка SVG - [svg4everybody](https://github.com/jonathantneal/svg4everybody)
 * Спрайты - [gulp.spritesmith](https://github.com/twolfson/gulp.spritesmith)
+* Динамика - [JQuery](http://jquery.com) (опционально)
+* Slick - the last carousel you'll ever need - [slick](https://github.com/kenwheeler/slick) (опционально)
+* Дополнительная поддержка SVG - [svg4everybody](https://github.com/jonathantneal/svg4everybody)  (опционально)
+
 
 ### Структура проекта
 
