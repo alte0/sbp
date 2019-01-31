@@ -1,28 +1,31 @@
-const gulp = require('gulp');
-const plumber = require('gulp-plumber');
-const gulpif = require('gulp-if');
-const path = require('../path.js');
-const flags = require('../flags.js');
-const browserSync = require('browser-sync');
-const pug = require('gulp-pug');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const favicon = require('serve-favicon')
-const express = require('express');
-const app = express();
-let listener, port;
+'use strict'
 
-const initBrowserSync = function() {
+import { task, src, dest } from 'gulp'
+import path from '../path'
+import flags from '../flags'
+import config from '../../dev.webpack.config.js'
+import plumber from 'gulp-plumber'
+import browserSync from 'browser-sync'
+import pug from 'gulp-pug'
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import favicon from 'serve-favicon'
+import express from 'express'
+
+const app = express()
+let listener, port
+
+const initBrowserSync = function () {
   return browserSync.init({
     // Customize the Browsersync console logging prefix
-    logPrefix: 'BrowserSync',
+    logPrefix: 'SBP',
     // Sync viewports to TOP position
     scrollProportionally: true,
-    //Открывать страницу в браузере по умолчанию
+    // Открывать страницу в браузере по умолчанию
     open: true,
     // true включать изменения, false перезагрузка страницы
     injectChanges: false,
-    //watch files ["app/css/style.css", "app/js/*.js"]
+    // watch files ["app/css/style.css", "app/js/*.js"]
     files: [
       './dist',
       './src/pug/**/*',
@@ -43,17 +46,16 @@ const initBrowserSync = function() {
   })
 }
 
-gulp.task('browser-sync', function(cb) {
+task('browser-sync', function (done) {
   if (flags.bs) {
     initBrowserSync()
-    cb();
   } else {
-    console.log('===> Browser-Sync - OFF!');
-    cb();
+    console.log('===> Browser-Sync - OFF!')
   }
+  done()
 })
 
-gulp.task('pug', function(cb) {
+task('pug', function (done) {
   if (flags.bs) {
     // отключаем кеширования
     app.disable('view cache')
@@ -71,7 +73,7 @@ gulp.task('pug', function(cb) {
     app.use('/svg', express.static('dist/svg'))
     // Tell express to use the webpack-dev-middleware and use the webpack.config.js
     // configuration file as a base.
-    const config = require('../../dev.webpack.config.js')
+    // const config = require('../../dev.webpack.config.js')
     app.use(
       webpackDevMiddleware(webpack(config), {
         publicPath: config.output.publicPath
@@ -79,7 +81,7 @@ gulp.task('pug', function(cb) {
     )
     app.use(favicon('src/favicon/index.ico'))
     // роутинг на наши страницы
-    app.get('/*.*', function(req, res) {
+    app.get('/*.*', function (req, res) {
       // регулярка для получения пути до шаблона
       // \ или \. . * ноль или более в конце строки $, g - все совпадения
       const regexp = /\/|\..*$/g
@@ -87,7 +89,7 @@ gulp.task('pug', function(cb) {
       res.render('src/pug/' + fileName, {})
     })
     // редирект на главную страницу
-    app.get('/static', function(req, res) {
+    app.get('/static', function (req, res) {
       res.redirect('/pages.html')
     })
 
@@ -96,8 +98,7 @@ gulp.task('pug', function(cb) {
   }
 
   if ((!flags.bs && flags.watch) || (!flags.bs && !flags.watch)) {
-    return gulp
-      .src(path.src.html)
+    return src(path.src.html)
       .pipe(plumber())
       .pipe(
         pug({
@@ -106,9 +107,8 @@ gulp.task('pug', function(cb) {
           locals: { minify: flags.minify }
         })
       )
-      .pipe(gulp.dest(path.dist.html))
+      .pipe(dest(path.dist.html))
   }
 
-  cb();
-});
-
+  done()
+})

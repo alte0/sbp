@@ -1,6 +1,6 @@
 {
   "name": "sbp",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Стартовый сборшик проектов",
   "main": "gulpfile.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "url": "https://github.com/alte0/sbp.git"
   },
   "engines": {
-    "node": ">= 8.11.1 <9.0.0",
+    "node": ">= 8.11.1",
     "npm": ">= 5.6.0"
   },
   "license": "MIT",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.5",
     "bemto.pug": "^2.1.0",
     "browser-sync": "^2.26.3",

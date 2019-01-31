@@ -6,9 +6,6 @@ module.exports = {
     chunkFilename: 'js/vendor.bundle.js'
   },
   devtool: 'eval-source-map',
-  devServer: {
-    hotOnly: true
-  },
   module: {
     // exclude исключить
     rules: [

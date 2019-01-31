@@ -1,8 +1,8 @@
-const gulp = require('gulp');
-const plumber = require('gulp-plumber');
-const gulpif = require('gulp-if');
-const path = require('../path.js');
+'use strict'
 
-gulp.task('fonts', function() {
-  return gulp.src([path.src.fonts]).pipe(gulp.dest(path.dist.fonts));
-});
+import { task, src, dest } from 'gulp'
+import path from '../path.js'
+
+task('fonts', function () {
+  return src([path.src.fonts]).pipe(dest(path.dist.fonts))
+})

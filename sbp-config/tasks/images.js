@@ -1,14 +1,15 @@
-const gulp = require('gulp');
-const plumber = require('gulp-plumber');
-const gulpif = require('gulp-if');
-const path = require('../path.js');
-const flags = require('../flags.js');
-const imagemin = require('gulp-imagemin');
-const browserSync = require('browser-sync');
+'use strict'
 
-gulp.task('images', function() {
-  return gulp
-    .src(path.src.images)
+import { task, src, dest, lastRun } from 'gulp'
+import path from '../path'
+import flags from '../flags'
+import plumber from 'gulp-plumber'
+import gulpif from 'gulp-if'
+import imagemin from 'gulp-imagemin'
+import browserSync from 'browser-sync'
+
+function images () {
+  return src(path.src.images, { since: lastRun(images) })
     .pipe(plumber())
     .pipe(
       imagemin([
@@ -28,6 +29,16 @@ gulp.task('images', function() {
         })
       ])
     )
-    .pipe(gulp.dest(path.dist.images))
+    .pipe(dest(path.dist.images))
     .pipe(gulpif(flags.watch, browserSync.stream()))
-})
+}
+
+function i () {
+  return src(path.src.i, { since: lastRun(i) })
+    .pipe(plumber())
+    .pipe(dest(path.dist.i))
+    .pipe(gulpif(flags.watch, browserSync.stream()))
+}
+
+task('images', images)
+task('i', i)

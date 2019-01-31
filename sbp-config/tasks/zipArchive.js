@@ -1,13 +1,10 @@
-const gulp = require('gulp');
-const plumber = require('gulp-plumber');
-const gulpif = require('gulp-if');
-const path = require('../path.js');
-const zip = require('gulp-zip');
+import { task, src, dest } from 'gulp'
+import plumber from 'gulp-plumber'
+import zip from 'gulp-zip'
 
-gulp.task('zipArchive', function() {
-  return gulp
-    .src('dist/**/*.*')
+task('zipArchive', function () {
+  return src('dist/**/*.*')
     .pipe(plumber())
     .pipe(zip('archive.zip'))
-    .pipe(gulp.dest('dist'))
+    .pipe(dest('dist'))
 })

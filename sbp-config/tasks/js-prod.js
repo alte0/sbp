@@ -1,17 +1,18 @@
-const gulp = require('gulp');
-const plumber = require('gulp-plumber');
-const gulpif = require('gulp-if');
-const path = require('../path.js');
-const webpack = require('webpack');
-const webpackStream = require('webpack-stream');
+'use strict'
 
-gulp.task('js:prod', function() {
-  const webpackConfigProd = require('../../prod.webpack.config.js')
-  return gulp
-    .src('./src/js/main.js')
+import { task, src, dest } from 'gulp'
+import path from '../path'
+import webpackConfigProd from '../../prod.webpack.config'
+import plumber from 'gulp-plumber'
+import webpack from 'webpack'
+import webpackStream from 'webpack-stream'
+
+task('js:prod', function () {
+//   const webpackConfigProd = require('../../prod.webpack.config.js')
+  return src('./src/js/main.js')
     .pipe(plumber())
     .pipe(webpackStream(webpackConfigProd, webpack))
-    .pipe(gulp.dest(path.dist.js))
+    .pipe(dest(path.dist.js))
 })
 // webpackStream for development
 // js:dev не нужен, он запускается в ExpressJs

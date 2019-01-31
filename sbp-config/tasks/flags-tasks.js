@@ -1,20 +1,22 @@
-const gulp = require('gulp');
-const flags = require('../flags.js');
+'use strict'
 
-gulp.task('isMinify', function(cb) {
+import { task } from 'gulp'
+import flags from '../flags'
+
+task('isMinify', function (done) {
   flags.minify = true
   console.log('=========> Minify - ', flags.minify)
-  cb();
-});
+  done()
+})
 
-gulp.task('isNoWatch', function(cb) {
+task('isNoWatch', function (done) {
   flags.watch = false
   console.log('=========> Watching - ', flags.watch)
-  cb();
-});
+  done()
+})
 
-gulp.task('isNoBs', function(cb) {
+task('isNoBs', function (done) {
   flags.bs = false
   console.log('=========> BrowserSync - ', flags.bs)
-  cb();
-});
+  done()
+})

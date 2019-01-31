@@ -1,7 +1,7 @@
 # Start build project (SBP)
 #### Работа со сборщиком коротко:
 ```sh
-Установить gulp-cli: npm i --g gulp-cli
+Установить gulp-cli: npm i -g gulp-cli
 Установить зависимости: npm i
 ```
 ```sh

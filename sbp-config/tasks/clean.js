@@ -1,28 +1,30 @@
-const gulp = require('gulp');
-const del = require('del');
-const path = require('../path.js');
+'use strict'
 
-gulp.task('clean-css', function() {
+import { task } from 'gulp'
+import del from 'del'
+import path from '../path'
+
+task('clean-css', function () {
   return del(path.dist.css)
 })
-gulp.task('clean-html', function() {
+task('clean-html', function () {
   return del(path.dist.html + '*.html')
 })
-gulp.task('clean-images', function() {
+task('clean-images', function () {
   return del(path.dist.images)
 })
-gulp.task('clean-i', function() {
+task('clean-i', function () {
   return del(path.dist.i)
 })
-gulp.task('clean-fonts', function() {
+task('clean-fonts', function () {
   return del(path.dist.fonts)
 })
-gulp.task('clean-js', function() {
+task('clean-js', function () {
   return del(path.dist.js)
 })
-gulp.task('clean-all', function() {
+task('clean-all', function () {
   return del(path.cleanFolder)
 })
-gulp.task('clean-spritesSymbolSvg', function() {
+task('clean-spritesSymbolSvg', function () {
   return del(path.cleanFolderSymbolSvg)
 })
