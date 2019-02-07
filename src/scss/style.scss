@@ -1,18 +1,20 @@
 @charset "utf-8";
 
 // Все картинки и шрифты необходимо подключать с использованием этих двух переменных:
-$imagesPath: "../images" !default;
-$iPath: "../i" !default;
-$fontsPath: "../fonts" !default;
+$imagesPath: "../images/" !default;
+$iPath: "../i/" !default;
+$fontsPath: "../fonts/" !default;
 
 $minify: false !default;
 @if $minify {
-  $imagesPath: "./images";
-  $iPath: "./i";
-  $fontsPath: "./fonts";
+  $imagesPath: "./images/";
+  $iPath: "./i/";
+  $fontsPath: "./fonts/";
 }
 
 @import "variables";
+@import "fonts";
+@import "common";
 @import "sprite/sprite.scss";
 @import "sprite/spriteSvg.scss";
 @import "components/**/*";
@@ -36,7 +38,5 @@ $minify: false !default;
 //   fill: red;
 // }
 
-// body {
-//   background-color: red;
-// }
+
 

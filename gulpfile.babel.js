@@ -21,6 +21,15 @@ task('watch', function (done) {
     watch([path.watch.sprites], series('sprites'))
     watch([path.watch.spritesSvg], series('spritesSVG'))
     watch([path.watch.spritesSymbolSvg], series('spritesSymbolsSVG'))
+    watch([path.watch.fonts], function () {
+      browserSync.reload()
+    })
+    watch([path.watch.i], function () {
+      browserSync.reload()
+    })
+    watch([path.watch.images], function () {
+      browserSync.reload()
+    })
   } else {
     console.log('=========> WATCH - OFF!')
   }

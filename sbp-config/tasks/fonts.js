@@ -1,8 +1,13 @@
 'use strict'
 
-import { task, src, dest } from 'gulp'
+import { task, src, dest, lastRun } from 'gulp'
 import path from '../path.js'
+import plumber from 'gulp-plumber'
 
-task('fonts', function () {
-  return src([path.src.fonts]).pipe(dest(path.dist.fonts))
-})
+function fonts () {
+  return src(path.src.fonts, { since: lastRun(fonts) })
+    .pipe(plumber())
+    .pipe(dest(path.dist.fonts))
+}
+
+task('fonts', fonts)
