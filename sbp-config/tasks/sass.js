@@ -9,7 +9,8 @@ import sass from 'gulp-sass'
 import sassGlob from 'gulp-sass-glob'
 import sassVars from 'gulp-sass-variables'
 import stylelint from 'gulp-stylelint'
-import autoprefixer from 'gulp-autoprefixer'
+import postcss from 'gulp-postcss'
+import autoprefixer from 'autoprefixer'
 import sourcemaps from 'gulp-sourcemaps'
 import cssnano from 'gulp-cssnano'
 
@@ -25,13 +26,7 @@ task('sass', function () {
       })
     )
     .pipe(sass().on('error', sass.logError))
-    .pipe(
-      autoprefixer({
-        // browsers: ['last 2 versions', 'ie >= 10'],
-        browsers: ['last 2 version', '> 1%', 'ie >= 10'],
-        cascade: false
-      })
-    )
+    .pipe(postcss([ autoprefixer() ]))
     .pipe(gulpif(flags.minify, cssnano()))
     .pipe(gulpif(flags.bs, sourcemaps.write()))
     .pipe(dest(path.dist.css))

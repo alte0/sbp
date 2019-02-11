@@ -1,6 +1,8 @@
 module.exports = {
   mode: 'development',
-  entry: ['./src/js/main.js'],
+  entry: {
+    script: './src/js/main.js'
+  },
   output: {
     filename: 'js/script.js',
     chunkFilename: 'js/vendor.bundle.js'

@@ -12,6 +12,7 @@ $minify: false !default;
   $fontsPath: "./fonts/";
 }
 
+@import "../../node_modules/normalize.css/normalize";
 @import "variables";
 @import "fonts";
 @import "common";
