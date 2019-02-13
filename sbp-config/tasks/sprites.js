@@ -6,7 +6,8 @@ import plumber from 'gulp-plumber'
 import spritesmith from 'gulp.spritesmith'
 import buffer from 'vinyl-buffer'
 import imagemin from 'gulp-imagemin'
-import svgSprite from 'gulp-svg-sprites'
+import svgSprites from 'gulp-svg-sprites'
+import svgSymbols from 'gulp-svg-symbols'
 
 function sprites () {
   const fileNameSprite = 'sprite.png'
@@ -40,38 +41,37 @@ function spritesSVG () {
   return src(path.src.spritesSvg)
     .pipe(plumber())
     .pipe(
-      svgSprite({
-        /**
-         * By default, the class `icon` will be used as the common class.
-         * but you can chose your own here
-         */
+      svgSprites({
         mode: 'sprite',
         common: 'icon',
         // templates: {
-        //   scss: true // не валидный scss
+        //   scss: true no valid scss
         // },
         cssFile: '../src/scss/sprite/spriteSvg.scss',
         svg: {
           sprite: 'images/sprite/sprite.svg'
         },
-        preview: true,
+        preview: false,
         padding: 10,
-        /**
-         * Easily add
-         */
-        selector: 'svg-%f'
+        selector: '%f'
       })
     )
     .pipe(dest(path.dist.spriteSvg))
 }
 
-function spritesSymbolsSVG () {
-  return src(path.src.spritesSymbolSvg)
+function symbolsSVG () {
+  return src(path.src.symbolsSvg)
     .pipe(plumber())
-    .pipe(svgSprite({ mode: 'symbols' }))
-    .pipe(dest(path.dist.spriteSvg))
+    .pipe(
+      svgSymbols({
+        svgAttrs: { class: `svg-symbol` },
+        class: `.svg-symbol--%f`,
+        templates: ['default-svg']
+      })
+    )
+    .pipe(dest(path.dist.symbolsSvg))
 }
 
 task('sprites', sprites)
 task('spritesSVG', spritesSVG)
-task('spritesSymbolsSVG', spritesSymbolsSVG)
+task('symbolsSVG', symbolsSVG)

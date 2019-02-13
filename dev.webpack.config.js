@@ -1,13 +1,15 @@
+const webpack = require('webpack')
+
 module.exports = {
   mode: 'development',
   entry: {
-    script: './src/js/main.js'
+    script: ['webpack-hot-middleware/client', './src/js/main.js']
   },
   output: {
     filename: 'js/script.js',
     chunkFilename: 'js/vendor.bundle.js'
   },
-  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
   module: {
     // exclude исключить
     rules: [
@@ -28,5 +30,6 @@ module.exports = {
     splitChunks: {
       chunks: 'all'
     }
-  }
+  },
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 }

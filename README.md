@@ -26,6 +26,7 @@
 * БЭМ-миксины для шаблонизатора Pug(ex-Jade) - [Bemto](https://github.com/kizu/bemto)
 * Run webpack as a stream to conveniently integrate with gulp. - [Webpack-stream](https://github.com/shama/webpack-stream)
 * Спрайты - [gulp.spritesmith](https://github.com/twolfson/gulp.spritesmith)
+* svg symbol - [gulp-svg-symbols](https://github.com/Hiswe/gulp-svg-symbols)
 * Динамика - [JQuery](http://jquery.com) (опционально)
 * Slick - the last carousel you'll ever need - [slick](https://github.com/kenwheeler/slick) (опционально)
 * Дополнительная поддержка SVG - [svg4everybody](https://github.com/jonathantneal/svg4everybody)  (опционально)
@@ -117,7 +118,7 @@ $ npm run minify или gulp minify
 Для ```:hover``` или ```:active``` в имени файла нужно указать ```~ (тильду)```, ппример: ```facebook~active.svg```
 
 **Пример для symbol SVG спрайта:**
-```<svg class="cloud"><use xlink:href="svg/symbols.svg#cloud-computing"></use></svg>``` где ```#cloud-computing``` имя файла svg
+```<svg class="cloud"><use xlink:href="symbol-svg/svg-symbols.svg#cloud-computing"></use></svg>``` где ```#cloud-computing``` имя файла svg
 
 ## Общие принципы работы
 

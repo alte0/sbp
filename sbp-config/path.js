@@ -7,7 +7,8 @@ module.exports = {
     i: 'dist/i/',
     fonts: 'dist/fonts/',
     sprite: 'dist/images/sprite',
-    spriteSvg: './dist/'
+    spriteSvg: 'dist/',
+    symbolsSvg: './dist/symbol-svg/'
   },
   src: {
     html: 'src/pug/*.pug',
@@ -18,7 +19,7 @@ module.exports = {
     fonts: 'src/fonts/**/*.*',
     sprites: 'src/sprites-png/*.png',
     spritesSvg: 'src/sprites-svg/*.svg',
-    spritesSymbolSvg: 'src/sprites-symbol-svg/*.svg'
+    symbolsSvg: 'src/symbol-svg/*.svg'
   },
   watch: {
     // 'Path must be a string' for gulp-watch
@@ -30,7 +31,7 @@ module.exports = {
     fonts: 'src/fonts/**/*.*',
     sprites: 'src/sprites-png/*.png',
     spritesSvg: 'src/sprites-svg/*.svg',
-    spritesSymbolSvg: 'src/sprites-symbol-svg/*.svg'
+    symbolsSvg: 'src/symbol-svg/*.svg'
   },
   cleanFolder: './dist',
   cleanFolderSymbolSvg: './dist/svg'

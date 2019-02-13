@@ -5,7 +5,7 @@ import HubRegistry from 'gulp-hub'
 import path from './sbp-config/path'
 import flags from './sbp-config/flags'
 import watch from 'gulp-watch'
-
+import browserSync from 'browser-sync'
 /* load some files into the registry */
 const hub = new HubRegistry(['./sbp-config/tasks/*.js'])
 
@@ -20,7 +20,7 @@ task('watch', function (done) {
     watch([path.watch.css], series('sass'))
     watch([path.watch.sprites], series('sprites'))
     watch([path.watch.spritesSvg], series('spritesSVG'))
-    watch([path.watch.spritesSymbolSvg], series('spritesSymbolsSVG'))
+    watch([path.watch.symbolsSvg], series('symbolsSVG'))
     watch([path.watch.fonts], function () {
       browserSync.reload()
     })
@@ -47,39 +47,25 @@ task('watch', function (done) {
 // ===========================================
 // Main tasks
 // ===========================================
-task('default',
-  series('clean-all', 'isNoBs',
-    parallel(
-      'sprites',
-      'spritesSVG',
-      'spritesSymbolsSVG'
-    ),
-    parallel(
-      'sass',
-      'images',
-      'i',
-      'fonts',
-      'js:prod'
-    ),
-    'pug', 'watch'
+task(
+  'default',
+  series(
+    'clean-all',
+    'isNoBs',
+    parallel('sprites', 'spritesSVG', 'symbolsSVG'),
+    parallel('sass', 'images', 'i', 'fonts', 'js:prod'),
+    'pug',
+    'watch'
   )
 )
 
 // js:dev не нужен он запускается в ExpressJs
-task('dev',
+task(
+  'dev',
   series(
     'clean-all',
-    parallel(
-      'sprites',
-      'spritesSVG',
-      'spritesSymbolsSVG'
-    ),
-    parallel(
-      'sass',
-      'pug',
-      'watch',
-      'browser-sync'
-    )
+    parallel('sprites', 'spritesSVG', 'symbolsSVG'),
+    parallel('sass', 'pug', 'watch', 'browser-sync')
   )
 )
 
@@ -87,23 +73,14 @@ task('minify', series(parallel('isMinify', 'isNoBs', 'isNoWatch'), 'default'))
 
 task('build', series(parallel('isNoBs', 'isNoWatch'), 'default'))
 
-task('zip',
+task(
+  'zip',
   series(
     'clean-all',
     'isNoBs',
     'isNoWatch',
-    parallel(
-      'sprites',
-      'spritesSVG',
-      'spritesSymbolsSVG'
-    ),
-    parallel(
-      'sass',
-      'images',
-      'i',
-      'fonts',
-      'js:prod'
-    ),
+    parallel('sprites', 'spritesSVG', 'symbolsSVG'),
+    parallel('sass', 'images', 'i', 'fonts', 'js:prod'),
     'pug',
     'zipArchive'
   )
