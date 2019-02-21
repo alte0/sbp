@@ -79,19 +79,19 @@ $ npm start или gulp
 ```
 разработка с наблюдением за файлами с BrowserSync & Express
 ```sh
-$ npm run dev или gulp dev
+$ npm run sbp:dev или gulp dev
 ```
 сборка для продакшена
 ```sh
-$ npm run build или gulp build
+$ npm run sbp:prod или gulp build
 ```
 сборка для продакшена с формированием архива
 ```sh
-$ npm run zip или gulp zip
+$ npm run sbp:zip или gulp zip
 ```
 сборка для продакшена с перенесением стилей в тэг style
 ```sh
-$ npm run minify или gulp minify
+$ npm run sbp:minify или gulp minify
 ```
 
 В результате создастся папка *dist*, в которой окажутся готовые для дальнейшего использования html-файлы.
