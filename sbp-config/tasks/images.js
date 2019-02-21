@@ -7,6 +7,9 @@ import plumber from 'gulp-plumber'
 import gulpif from 'gulp-if'
 import imagemin from 'gulp-imagemin'
 import browserSync from 'browser-sync'
+import svgmin from 'gulp-svgmin'
+import { svgConfigPlugs } from '../svgConfigPlugs'
+// svgConfigPlugs RUS doc https://github.com/svg/svgo/blob/master/README.ru.md
 
 function images () {
   return src(path.src.images, { since: lastRun(images) })
@@ -16,17 +19,7 @@ function images () {
         imagemin.gifsicle({ interlaced: true, optimizationLevel: 1 }),
         imagemin.jpegtran({ progressive: true }),
         imagemin.optipng({ optimizationLevel: 5 }),
-        imagemin.svgo({
-          plugins: [
-            { removeViewBox: true },
-            { cleanupAttrs: true },
-            { removeEmptyAttrs: true },
-            { removeComments: true },
-            { removeEditorsNSData: true },
-            { convertColors: true },
-            { cleanupIDs: false }
-          ]
-        })
+        imagemin.svgo(svgConfigPlugs)
       ])
     )
     .pipe(dest(path.dist.images))
@@ -36,6 +29,7 @@ function images () {
 function i () {
   return src(path.src.i, { since: lastRun(i) })
     .pipe(plumber())
+    .pipe(svgmin(svgConfigPlugs))
     .pipe(dest(path.dist.i))
     .pipe(gulpif(flags.watch, browserSync.stream()))
 }

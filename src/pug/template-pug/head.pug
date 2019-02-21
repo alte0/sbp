@@ -2,9 +2,9 @@ head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    meta(name='copyright', content='Start build project (SBP), 2018')
-    meta(name='author' content='Start build project (SBP)')
     block head
+    meta(name='copyright', content= copyrightContent || 'Start build project (SBP), 2018')
+    meta(name='author' content= authorContent || 'Start build project (SBP)')
     title= pageTitle || 'Start build project (SBP)'
     //- link(rel='stylesheet', href='<%=htmlWebpackPlugin.files.css%>')
 

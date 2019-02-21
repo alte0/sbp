@@ -28,7 +28,7 @@ task('sass', function () {
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([ autoprefixer() ]))
     .pipe(gulpif(flags.minify, cssnano()))
-    .pipe(gulpif(flags.bs, sourcemaps.write()))
+    .pipe(gulpif(flags.bs, sourcemaps.write('.')))
     .pipe(dest(path.dist.css))
   )
 })

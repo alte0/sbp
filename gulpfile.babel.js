@@ -11,7 +11,12 @@ const hub = new HubRegistry(['./sbp-config/tasks/*.js'])
 
 /* tell gulp to use the tasks just loaded */
 registry(hub)
-
+// ===========================================
+// task browser relad page
+// ===========================================
+task('reload', function () {
+  browserSync.reload()
+})
 // ===========================================
 // watching tasks
 // ===========================================
@@ -20,16 +25,10 @@ task('watch', function (done) {
     watch([path.watch.css], series('sass'))
     watch([path.watch.sprites], series('sprites'))
     watch([path.watch.spritesSvg], series('spritesSVG'))
-    watch([path.watch.symbolsSvg], series('symbolsSVG'))
-    watch([path.watch.fonts], function () {
-      browserSync.reload()
-    })
-    watch([path.watch.i], function () {
-      browserSync.reload()
-    })
-    watch([path.watch.images], function () {
-      browserSync.reload()
-    })
+    watch([path.watch.symbolsSvg], series('symbolsSVG', 'reload'))
+    watch([path.watch.fonts], series('reload'))
+    watch([path.watch.i], series('reload'))
+    watch([path.watch.images], series('reload'))
   } else {
     console.log('=========> WATCH - OFF!')
   }

@@ -8,10 +8,13 @@ import buffer from 'vinyl-buffer'
 import imagemin from 'gulp-imagemin'
 import svgSprites from 'gulp-svg-sprites'
 import svgSymbols from 'gulp-svg-symbols'
+import svgmin from 'gulp-svgmin'
+import { svgConfigPlugs } from '../svgConfigPlugs'
 
 function sprites () {
   const fileNameSprite = 'sprite.png'
   const fileNameSprite2x = 'sprite@2x.png'
+
   const spriteData = src(path.src.sprites)
     .pipe(plumber())
     .pipe(
@@ -38,38 +41,44 @@ function sprites () {
 }
 
 function spritesSVG () {
-  return src(path.src.spritesSvg)
-    .pipe(plumber())
-    .pipe(
-      svgSprites({
-        mode: 'sprite',
-        common: 'icon',
-        // templates: {
-        //   scss: true no valid scss
-        // },
-        cssFile: '../src/scss/sprite/spriteSvg.scss',
-        svg: {
-          sprite: 'images/sprite/sprite.svg'
-        },
-        preview: false,
-        padding: 10,
-        selector: '%f'
-      })
-    )
-    .pipe(dest(path.dist.spriteSvg))
+  return (
+    src(path.src.spritesSvg)
+      .pipe(plumber())
+      .pipe(svgmin(svgConfigPlugs))
+      .pipe(
+        svgSprites({
+          mode: 'sprite',
+          common: 'icon',
+          // templates: {
+          //   scss: true
+          // },
+          cssFile: '../src/scss/sprite/spriteSvg.scss',
+          svg: {
+            sprite: 'images/sprite/sprite.svg'
+          },
+          preview: false,
+          padding: 10,
+          selector: '%f'
+        })
+      )
+      .pipe(dest(path.dist.spriteSvg))
+  )
 }
 
 function symbolsSVG () {
-  return src(path.src.symbolsSvg)
-    .pipe(plumber())
-    .pipe(
-      svgSymbols({
-        svgAttrs: { class: `svg-symbol` },
-        class: `.svg-symbol--%f`,
-        templates: ['default-svg']
-      })
-    )
-    .pipe(dest(path.dist.symbolsSvg))
+  return (
+    src(path.src.symbolsSvg)
+      .pipe(plumber())
+      .pipe(svgmin(svgConfigPlugs))
+      .pipe(
+        svgSymbols({
+          svgAttrs: { class: `svg-symbol` },
+          class: `.svg-symbol--%f`,
+          templates: ['default-svg']
+        })
+      )
+      .pipe(dest(path.dist.symbolsSvg))
+  )
 }
 
 task('sprites', sprites)
