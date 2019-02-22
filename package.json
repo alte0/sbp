@@ -1,6 +1,6 @@
 {
   "name": "sbp",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Стартовый сборшик проектов",
   "main": "gulpfile.babel.js",
   "scripts": {
@@ -78,6 +78,7 @@
     "webpack": "^4.29.5",
     "webpack-dev-middleware": "^3.6.0",
     "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.2.1",
     "webpack-stream": "^5.2.1"
   }
 }
