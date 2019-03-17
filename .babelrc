@@ -1,9 +1,5 @@
 {
     "presets": [
-        ["@babel/preset-env",
-            {
-                "loose": true, // Enable "loose" transformations for any plugins in this preset that allow them.
-                "useBuiltIns": "usage" // Adds specific imports for polyfills when they are used in each file. We take advantage of the fact that a bundler will load the same polyfill only once.
-            }]
+        ["@babel/preset-env"]
     ]
 }
