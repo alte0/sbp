@@ -1,10 +1,17 @@
-# common, PHPStorm, WebStorm
+# Файлы и папки операционной системы
 .DS_Store
-**/.idea
 Thumbs.db
 
-#project
-bower_components
-node_modules
-npm-debug.log
-dist
+# Файлы редактора
+.idea
+*.sublime*
+.vscode
+
+# Вспомогательные файлы
+*.log*
+node_modules/
+bower_components/
+
+# Папка с собранными файлами проекта
+build/
+dist/
