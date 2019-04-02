@@ -1,6 +1,10 @@
 {
-    "extends": "standard",
-    "env": {
+    "extends": ["standard", "plugin:promise/recommended"],
+    "plugins": [
+        "no-loops"
+    ],
+    "env":
+    {
         "node": true
-   }
+    }
 }
