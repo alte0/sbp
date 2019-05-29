@@ -1,14 +1,14 @@
 {
   "name": "sbp",
-  "version": "2.1.11",
+  "version": "2.2",
   "description": "Стартовый сборшик проектов",
   "main": "gulpfile.babel.js",
   "scripts": {
-    "start": "gulp",
-    "sbp:dev": "gulp dev",
-    "sbp:prod": "gulp build",
-    "sbp:zip": "gulp zip",
-    "sbp:minify": "gulp minify"
+    "start": "npx gulp",
+    "sbp:dev": "npx gulp dev",
+    "sbp:prod": "npx gulp build",
+    "sbp:zip": "npx gulp zip",
+    "sbp:minify": "npx gulp minify"
   },
   "author": "Dmitriev Maksim and other people",
   "repository": {
@@ -37,7 +37,7 @@
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
     "autoprefixer": "^9.5.1",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.0.6",
     "bemto.pug": "^2.1.0",
     "browser-sync": "^2.26.5",
     "del": "^4.1.1",
@@ -49,8 +49,8 @@
     "eslint-plugin-node": "^9.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "express": "^4.16.4",
-    "gulp": "^4.0.1",
+    "express": "^4.17.0",
+    "gulp": "^4.0.2",
     "gulp-cssnano": "^2.1.2",
     "gulp-debug": "^4.0.0",
     "gulp-hub": "^4.2.0",
@@ -68,7 +68,7 @@
     "gulp-svg-symbols": "^3.2.3",
     "gulp-svgmin": "^2.2.0",
     "gulp-watch": "^5.0.1",
-    "gulp-zip": "^4.2.0",
+    "gulp-zip": "^5.0.0",
     "gulp.spritesmith": "^6.9.0",
     "serve-favicon": "^2.4.5",
     "stylelint": "^10.0.1",
@@ -76,9 +76,9 @@
     "stylelint-scss": "^3.6.1",
     "svg4everybody": "^2.1.9",
     "vinyl-buffer": "^1.0.1",
-    "webpack": "^4.30.0",
-    "webpack-dev-middleware": "^3.6.2",
-    "webpack-hot-middleware": "^2.24.4",
+    "webpack": "^4.32.0",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.2.1",
     "webpack-stream": "^5.2.1"
   }

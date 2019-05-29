@@ -1,21 +1,20 @@
 # Start build project (SBP)
 #### Работа со сборщиком коротко:
-```sh
-Установить gulp-cli: npm i -g gulp-cli
-Установить зависимости: npm i
-```
+~~*Установить gulp-cli: npm i -g gulp-cli*~~  не нужно с 2.2 v.
+*Установить зависимости: npm i*
+
 ```sh
   "scripts": {
-    "start": "gulp",
-    "sbp:dev": "gulp dev",
-    "sbp:prod": "gulp build",
-    "sbp:zip": "gulp zip",
-    "sbp:minify": "gulp minify"
+    "start": "npx gulp",
+    "sbp:dev": "npx gulp dev",
+    "sbp:prod": "npx gulp build",
+    "sbp:zip": "npx gulp zip",
+    "sbp:minify": "npx gulp minify"
   }
 ```
 #### Рекомендация по разработке:
 ```sh
-  npm sbp:dev или gulp dev - быстрая сборка проекта
+  npm sbp:dev или npx gulp dev - быстрая сборка проекта
 ```
 ### Используемые технологии
 

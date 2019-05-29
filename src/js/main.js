@@ -5,3 +5,4 @@ require('./components/components')
 svg4everybody()
 
 console.info(`index file fwef`)
+// alert(`rr23r`)
