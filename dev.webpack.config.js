@@ -7,7 +7,7 @@ module.exports = merge(common, {
   entry: {
     script: ['webpack-hot-middleware/client', './src/js/main.js']
   },
-  output: {
+  output: { // path ok
     filename: 'js/script.js',
     chunkFilename: 'js/vendor.bundle.js'
   },

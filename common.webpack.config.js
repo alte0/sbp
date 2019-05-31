@@ -1,5 +1,5 @@
 module.exports = {
-  output: {
+  output: { // path ok
     filename: 'script.js',
     chunkFilename: 'vendor.bundle.js'
   },
