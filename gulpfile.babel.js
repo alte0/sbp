@@ -1,13 +1,24 @@
 'use strict'
 
-import { task, series, parallel, registry } from 'gulp'
+import { task, series, parallel, registry, watch } from 'gulp'
 import HubRegistry from 'gulp-hub'
 import path from './sbp-config/path'
 import flags from './sbp-config/flags'
-import watch from 'gulp-watch'
+// import watch from 'gulp-watch'
 import browserSync from 'browser-sync'
 /* load some files into the registry */
-const hub = new HubRegistry(['./sbp-config/tasks/*.js'])
+// Указывать пути к файлам задач, иначе медленно.
+const hub = new HubRegistry([
+  './sbp-config/tasks/bs-expressjs-pug.js',
+  './sbp-config/tasks/clean.js',
+  './sbp-config/tasks/flags-tasks.js',
+  './sbp-config/tasks/fonts.js',
+  './sbp-config/tasks/images.js',
+  './sbp-config/tasks/js-prod.js',
+  './sbp-config/tasks/sprites.js',
+  './sbp-config/tasks/sass.js',
+  './sbp-config/tasks/zipArchive.js',
+])
 
 /* tell gulp to use the tasks just loaded */
 registry(hub)
@@ -35,7 +46,7 @@ task('watch', function (done) {
 
   if (!flags.bs && flags.watch) {
     watch([path.watch.html], series('pug'))
-    watch([path.watch.js], series('js:prod'))
+    watch([path.watch.js], series('jsProd'))
     watch([path.watch.images], series('images'))
     watch([path.watch.i], series('i'))
     watch([path.watch.fonts], series('fonts'))
@@ -64,13 +75,14 @@ task(
   series(
     'clean-all',
     parallel('sprites', 'spritesSVG', 'symbolsSVG'),
-    parallel('sass', 'pug', 'watch', 'browser-sync')
+    'sass',
+    parallel('pug', 'watch', 'browser-sync')
   )
 )
 
 task('minify', series(parallel('isMinify', 'isNoBs', 'isNoWatch'), 'default'))
 
-task('build', series(parallel('isNoBs', 'isNoWatch'), 'default'))
+task('prod', series(parallel('isNoBs', 'isNoWatch'), 'default'))
 
 task(
   'zip',
@@ -79,7 +91,8 @@ task(
     'isNoBs',
     'isNoWatch',
     parallel('sprites', 'spritesSVG', 'symbolsSVG'),
-    parallel('sass', 'images', 'i', 'fonts', 'js:prod'),
+    'sass',
+    parallel('images', 'i', 'fonts', 'js:prod'),
     'pug',
     'zipArchive'
   )

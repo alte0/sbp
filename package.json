@@ -1,12 +1,12 @@
 {
   "name": "sbp",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "Стартовый сборшик проектов",
   "main": "gulpfile.babel.js",
   "scripts": {
     "start": "npx gulp",
     "sbp:dev": "npx gulp dev",
-    "sbp:prod": "npx gulp build",
+    "sbp:prod": "npx gulp prod",
     "sbp:zip": "npx gulp zip",
     "sbp:minify": "npx gulp minify"
   },

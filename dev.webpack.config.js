@@ -3,7 +3,6 @@ const merge = require('webpack-merge')
 const common = require('./common.webpack.config.js')
 
 module.exports = merge(common, {
-  mode: 'development',
   entry: {
     script: ['webpack-hot-middleware/client', './src/js/main.js']
   },

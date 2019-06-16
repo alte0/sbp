@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'development',
   output: { // path ok
     filename: 'script.js',
     chunkFilename: 'vendor.bundle.js'
@@ -15,13 +16,14 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader?cacheDirectory=true'
+        loader: 'babel-loader'
       }
     ]
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all',
+      name: false,
     }
   }
 }

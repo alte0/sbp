@@ -7,7 +7,7 @@ import plumber from 'gulp-plumber'
 import webpack from 'webpack'
 import webpackStream from 'webpack-stream'
 
-task('js:prod', function () {
+task('jsProd', function () {
 //   const webpackConfigProd = require('../../prod.webpack.config.js')
   return src('./src/js/main.js')
     .pipe(plumber())

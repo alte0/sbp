@@ -7,14 +7,14 @@
   "scripts": {
     "start": "npx gulp",
     "sbp:dev": "npx gulp dev",
-    "sbp:prod": "npx gulp build",
+    "sbp:prod": "npx gulp prod",
     "sbp:zip": "npx gulp zip",
     "sbp:minify": "npx gulp minify"
   }
 ```
 #### Рекомендация по разработке:
 ```sh
-  npm sbp:dev или npx gulp dev - быстрая сборка проекта
+  npm run sbp:dev или npx gulp dev - быстрая сборка проекта
 ```
 ### Используемые технологии
 
