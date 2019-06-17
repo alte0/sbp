@@ -63,7 +63,7 @@ task(
     'clean-all',
     'isNoBs',
     parallel('sprites', 'spritesSVG', 'symbolsSVG'),
-    parallel('sass', 'images', 'i', 'fonts', 'js:prod'),
+    parallel('sass', 'images', 'i', 'fonts', 'jsProd'),
     'pug',
     'watch'
   )
@@ -92,7 +92,7 @@ task(
     'isNoWatch',
     parallel('sprites', 'spritesSVG', 'symbolsSVG'),
     'sass',
-    parallel('images', 'i', 'fonts', 'js:prod'),
+    parallel('images', 'i', 'fonts', 'jsProd'),
     'pug',
     'zipArchive'
   )
