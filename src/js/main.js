@@ -1,8 +1,8 @@
 import svg4everybody from 'svg4everybody'
-require('./components/slick-init')
-require('./components/components')
+import './components/slick-init'
+import './components/components'
 
 svg4everybody()
 
-console.info(`index file fwef`)
+console.info(`main.js`)
 // alert(`rr23r`)
