@@ -4,5 +4,5 @@ import './components/components'
 
 svg4everybody()
 
-console.info(`main.js`)
-// alert(`rr23r`)
+console.info('main.js')
+// alert('rr23r')

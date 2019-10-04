@@ -10,6 +10,7 @@ import svgSprites from 'gulp-svg-sprites'
 import svgSymbols from 'gulp-svg-symbols'
 import svgmin from 'gulp-svgmin'
 import { svgConfigPlugs } from '../svgConfigPlugs'
+import merge from 'merge-stream'
 
 function sprites () {
   const fileNameSprite = 'sprite.png'
@@ -31,13 +32,14 @@ function sprites () {
       })
     )
 
-  spriteData.img
+  const imgStream = spriteData.img
     .pipe(buffer())
-    .pipe(imagemin(imagemin.optipng({ optimizationLevel: 5 })))
+    .pipe(imagemin())
     .pipe(dest(path.dist.sprite))
-  spriteData.css.pipe(dest('./src/scss/sprite/'))
+  
+  const cssStream = spriteData.css.pipe(dest('./src/scss/sprite/'))
 
-  return spriteData
+  return merge(imgStream, cssStream)
 }
 
 function spritesSVG () {
