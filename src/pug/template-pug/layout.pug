@@ -11,6 +11,6 @@ html(lang="ru")
     block footer
       include footer
 
-    //- script(src='<%= htmlWebpackPlugin.files.chunks.main.entry %>')
-    script(src='js/vendor.bundle.js' async)
+    script(src='js/vendor.bundle.js' defer)
     script(src='js/script.js' defer)
+    //- defer/async смотри https://learn.javascript.ru/script-async-defer
