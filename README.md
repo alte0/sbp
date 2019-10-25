@@ -74,23 +74,23 @@ $ npm install или npm i
 ### Работа со сборщиком
 разработка с наблюдением за файлами
 ```sh
-$ npm start или gulp
+$ npm start или npx gulp
 ```
 разработка с наблюдением за файлами с BrowserSync & Express
 ```sh
-$ npm run sbp:dev или gulp dev
+$ npm run sbp:dev или npx gulp dev
 ```
 сборка для продакшена
 ```sh
-$ npm run sbp:prod или gulp build
+$ npm run sbp:prod или npx gulp build
 ```
 сборка для продакшена с формированием архива
 ```sh
-$ npm run sbp:zip или gulp zip
+$ npm run sbp:zip или npx gulp zip
 ```
 сборка для продакшена с перенесением стилей в тэг style
 ```sh
-$ npm run sbp:minify или gulp minify
+$ npm run sbp:minify или npx gulp minify
 ```
 
 В результате создастся папка *dist*, в которой окажутся готовые для дальнейшего использования html-файлы.
