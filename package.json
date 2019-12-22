@@ -19,10 +19,18 @@
     "node": ">= 8.11.1",
     "npm": ">= 5.6.0"
   },
-  "browserslist": [
-    "last 4 version",
-    "not ie <= 9"
-  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "license": "MIT",
   "private": true,
   "dependencies": {

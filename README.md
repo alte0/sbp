@@ -16,7 +16,11 @@
 ```sh
   npm run sbp:dev или npx gulp dev - быстрая сборка проекта
 ```
-### Используемые технологии
+#### Поддержка браузеров:
+
+  [Global coverage: 92.07%](https://browserl.ist/?q=%22%3E0.2%25%22%2C+%22not+dead%22%2C+%22not+op_mini+all%22)
+
+#### Используемые технологии
 
 * Менеджер пакетов и внешних зависимостей - [npm](https://www.npmjs.com)
 * Автоматическая сборка - [Gulp 4](http://gulpjs.com)
