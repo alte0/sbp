@@ -9,11 +9,9 @@ block head
 block content
   p it's works!
   h1
-
+  - let i = 1
   +b.slick-s
-    +e.item
-      <img src="https://via.placeholder.com/150">
-    +e.item
-      <img src="https://via.placeholder.com/150">
-    +e.item
-      <img src="https://via.placeholder.com/150">
+    while i <= 4
+      +e.item
+        img(src="images/150.png")
+      - i++
