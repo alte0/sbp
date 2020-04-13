@@ -1,22 +1,19 @@
-'use strict'
+import flags from '../flags';
 
-import { task } from 'gulp'
-import flags from '../flags'
+export function minifyTask(done) {
+  flags.minify = true;
+  console.log('=========> Minify - ', flags.minify);
+  done();
+}
 
-task('isMinify', function (done) {
-  flags.minify = true
-  console.log('=========> Minify - ', flags.minify)
-  done()
-})
+export function noWatchTask(done) {
+  flags.watch = false;
+  console.log('=========> Watching - ', flags.watch);
+  done();
+}
 
-task('isNoWatch', function (done) {
-  flags.watch = false
-  console.log('=========> Watching - ', flags.watch)
-  done()
-})
-
-task('isNoBs', function (done) {
-  flags.bs = false
-  console.log('=========> BrowserSync - ', flags.bs)
-  done()
-})
+export function noBsTask(done) {
+  flags.bs = false;
+  console.log('=========> BrowserSync - ', flags.bs);
+  done();
+}

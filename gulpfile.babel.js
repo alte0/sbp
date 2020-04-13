@@ -1,99 +1,50 @@
-'use strict'
 
-import { task, series, parallel, registry, watch } from 'gulp'
-import HubRegistry from 'gulp-hub'
-import path from './sbp-config/path'
-import flags from './sbp-config/flags'
-// import watch from 'gulp-watch'
-import browserSync from 'browser-sync'
-/* load some files into the registry */
-// Указывать пути к файлам задач, иначе медленно.
-const hub = new HubRegistry([
-  './sbp-config/tasks/bs-expressjs-pug.js',
-  './sbp-config/tasks/clean.js',
-  './sbp-config/tasks/flags-tasks.js',
-  './sbp-config/tasks/fonts.js',
-  './sbp-config/tasks/images.js',
-  './sbp-config/tasks/js-prod.js',
-  './sbp-config/tasks/sprites.js',
-  './sbp-config/tasks/sass.js',
-  './sbp-config/tasks/zipArchive.js',
-])
-
-/* tell gulp to use the tasks just loaded */
-registry(hub)
+import { series, parallel, watch } from 'gulp';
+import path from './sbp-config/path';
+import flags from './sbp-config/flags';
+import { minifyTask, noBsTask, noWatchTask } from './sbp-config/tasks/flags-tasks';
+import { cleanTask, cleanDevTask } from './sbp-config/tasks/clean';
+import { htmlTask } from './sbp-config/tasks/html';
+import { fontsTask } from './sbp-config/tasks/fonts';
+import { imagesTask, iTask } from './sbp-config/tasks/images';
+import { jsTask } from './sbp-config/tasks/js';
+import { sassTask } from './sbp-config/tasks/sass';
+import { spritesTask, spritesSVGTask, symbolsSVGTask } from './sbp-config/tasks/sprites';
+import { zipArchive } from './sbp-config/tasks/zipArchive';
+import { bsTask } from './sbp-config/tasks/server';
+import { deployTask } from './sbp-config/tasks/deploy';
 // ===========================================
-// task browser relad page
+// watching task
 // ===========================================
-task('reload', function () {
-  browserSync.reload()
-})
-// ===========================================
-// watching tasks
-// ===========================================
-task('watch', function (done) {
+function watchTask(cb) {
   if (flags.watch) {
-    watch([path.watch.css], series('sass'))
-    watch([path.watch.sprites], series('sprites'))
-    watch([path.watch.spritesSvg], series('spritesSVG'))
-    watch([path.watch.symbolsSvg], series('symbolsSVG', 'reload'))
-    watch([path.watch.fonts], series('reload'))
-    watch([path.watch.i], series('reload'))
-    watch([path.watch.images], series('reload'))
+    watch([path.watch.html], series(htmlTask));
+    watch([path.watch.dataJson], series(htmlTask));
+    watch([path.watch.sprites], series(spritesTask));
+    watch([path.watch.spritesSvg], series(spritesSVGTask));
+    watch([path.watch.symbolsSvg], series(symbolsSVGTask));
+    watch([path.watch.css], series(sassTask));
+    watch(path.watch.js, series(jsTask));
   } else {
-    console.log('=========> WATCH - OFF!')
+    console.log('=========> WATCH - OFF!');
   }
 
-  if (!flags.bs && flags.watch) {
-    watch([path.watch.html], series('pug'))
-    watch([path.watch.js], series('jsProd'))
-    watch([path.watch.images], series('images'))
-    watch([path.watch.i], series('i'))
-    watch([path.watch.fonts], series('fonts'))
-  }
-
-  done()
-})
+  cb();
+}
 // ===========================================
-// Main tasks
+// All tasks
 // ===========================================
-task(
-  'default',
-  series(
-    'clean-all',
-    'isNoBs',
-    parallel('sprites', 'spritesSVG', 'symbolsSVG'),
-    parallel('sass', 'images', 'i', 'fonts', 'jsProd'),
-    'pug',
-    'watch'
-  )
-)
+const defaultTask = () => series(
+  cleanDevTask,
+  parallel(spritesTask, spritesSVGTask, symbolsSVGTask, jsTask, sassTask),
+  htmlTask,
+);
 
-// js:dev не нужен он запускается в ExpressJs
-task(
-  'dev',
-  series(
-    'clean-all',
-    parallel('sprites', 'spritesSVG', 'symbolsSVG'),
-    'sass',
-    parallel('pug', 'watch', 'browser-sync')
-  )
-)
+const setBuild = () => series(minifyTask, noBsTask, noWatchTask, defaultTask());
+const copyTask = () => series(fontsTask, imagesTask, iTask);
 
-task('minify', series(parallel('isMinify', 'isNoBs', 'isNoWatch'), 'default'))
-
-task('prod', series(parallel('isNoBs', 'isNoWatch'), 'default'))
-
-task(
-  'zip',
-  series(
-    'clean-all',
-    'isNoBs',
-    'isNoWatch',
-    parallel('sprites', 'spritesSVG', 'symbolsSVG'),
-    'sass',
-    parallel('images', 'i', 'fonts', 'jsProd'),
-    'pug',
-    'zipArchive'
-  )
-)
+exports.default = series(noBsTask, defaultTask(), watchTask);
+exports.dev = series(defaultTask(), watchTask, bsTask);
+exports.build = series(cleanTask, copyTask(), setBuild());
+exports.zip = series(cleanTask, copyTask(), setBuild(), zipArchive);
+exports.deploy = series(cleanTask, copyTask(), setBuild(), deployTask);

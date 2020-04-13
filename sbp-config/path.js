@@ -1,17 +1,25 @@
 module.exports = {
-  dist: {
-    html: 'dist/',
-    js: 'dist/js/',
-    css: 'dist/css/',
-    images: 'dist/images/',
-    i: 'dist/i/',
-    fonts: 'dist/fonts/',
-    sprite: 'dist/images/sprite',
-    spriteSvg: 'dist/',
-    symbolsSvg: './dist/symbol-svg/'
+  dev: {
+    html: 'src/',
+    js: 'src/js/',
+    css: 'src/css/',
+    sprite: 'src/images/sprite',
+    spriteSvg: 'src/images/sprite-svg',
+    symbolsSvg: 'src/images/symbols-svg',
+  },
+  build: {
+    html: 'build/',
+    js: 'build/js/',
+    css: 'build/css/',
+    images: 'build/images/',
+    i: 'build/i/',
+    fonts: 'build/fonts/',
+    sprite: 'build/images/sprite',
+    spriteSvg: 'build/images/sprite-svg',
+    symbolsSvg: './build/images/symbols-svg',
   },
   src: {
-    html: 'src/pug/*.pug',
+    html: 'src/html/*.html',
     js: 'src/js/components/*.js',
     css: ['src/scss/style.scss'],
     images: 'src/images/**/*.*',
@@ -19,20 +27,19 @@ module.exports = {
     fonts: 'src/fonts/**/*.*',
     sprites: 'src/sprites-png/*.png',
     spritesSvg: 'src/sprites-svg/*.svg',
-    symbolsSvg: 'src/symbol-svg/*.svg'
+    symbolsSvg: 'src/symbol-svg/*.svg',
   },
   watch: {
-    // 'Path must be a string' for gulp-watch
-    html: 'src/pug/**/*.pug',
-    js: 'src/js/**/*.js',
+    html: 'src/html/**/*.html',
+    dataJson: 'src/data-json/',
+    js: ['src/js/main.js', 'src/js/components/**/*.js'],
     css: 'src/scss/**/*.scss',
-    images: 'src/images/**/*.*',
-    i: 'src/i/**/*.*',
-    fonts: 'src/fonts/**/*.*',
     sprites: 'src/sprites-png/*.png',
     spritesSvg: 'src/sprites-svg/*.svg',
-    symbolsSvg: 'src/symbol-svg/*.svg'
+    symbolsSvg: 'src/symbol-svg/*.svg',
   },
-  cleanFolder: './dist',
-  cleanFolderSymbolSvg: './dist/svg'
-}
+  cleanFolder: './build',
+  cleanHtml: './src/*.html',
+  cleanJs: './src/js/script.js',
+  cleanCss: './src/css',
+};

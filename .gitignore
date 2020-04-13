@@ -14,4 +14,9 @@ bower_components/
 
 # Папка с собранными файлами проекта
 build/
-dist/
+src/*.html
+src/images/sprite
+src/images/sprite-svg
+src/images/symbols-svg
+src/js/script.js
+src/css/

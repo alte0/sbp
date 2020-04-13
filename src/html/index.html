@@ -1,0 +1,15 @@
+<extends src="base.html">
+  <block name="header" >
+    <include src="header.html" locals='{}'></include>
+  </block>
+  <block name="main">
+    <include src="ul.html" locals='{"array":["li elment", "li elment", "li elment" ]}'></include>
+    <include src="ul.html" locals='@@include("ul.json")'></include>
+    <h1>ewe</h1>
+    <!-- не валидный код -->
+    <h2 class="ef">
+      <p>efw</p>
+    </h2>
+    <!-- не валидный код -->
+  </block>
+</extends>

@@ -19,7 +19,7 @@ $minify: false !default;
 @import "sprite/sprite.scss";
 @import "sprite/spriteSvg.scss";
 @import "components/**/*";
-@import "../../node_modules/slick-carousel/slick/slick.scss";
+// @import "../../node_modules/slick-carousel/slick/slick.scss";
 
 // .example-sprite {
 //   display: inline-block;
@@ -39,5 +39,7 @@ $minify: false !default;
 //   fill: red;
 // }
 
-
+// body {
+//   background-color: green;
+// }
 

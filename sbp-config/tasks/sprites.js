@@ -1,20 +1,23 @@
 'use strict'
 
-import { task, src, dest } from 'gulp'
-import path from '../path'
-import plumber from 'gulp-plumber'
-import spritesmith from 'gulp.spritesmith'
-import buffer from 'vinyl-buffer'
-import imagemin from 'gulp-imagemin'
-import svgSprites from 'gulp-svg-sprites'
-import svgSymbols from 'gulp-svg-symbols'
-import svgmin from 'gulp-svgmin'
-import { svgConfigPlugs } from '../svgConfigPlugs'
-import merge from 'merge-stream'
+import { src, dest } from 'gulp';
+import path from '../path';
+import plumber from 'gulp-plumber';
+import spritesmith from 'gulp.spritesmith';
+import buffer from 'vinyl-buffer';
+import imagemin from 'gulp-imagemin';
+import svgSprites from 'gulp-svg-sprites';
+import svgSymbols from 'gulp-svg-symbols';
+import svgmin from 'gulp-svgmin';
+import { svgConfigPlugs } from '../svgConfigPlugs';
+import merge from 'merge-stream';
+import browserSync from 'browser-sync';
+import gulpif from 'gulp-if';
+import flags from '../flags';
 
-function sprites () {
-  const fileNameSprite = 'sprite.png'
-  const fileNameSprite2x = 'sprite@2x.png'
+export function spritesTask () {
+  const fileNameSprite = 'sprite.png';
+  const fileNameSprite2x = 'sprite@2x.png';
 
   const spriteData = src(path.src.sprites)
     .pipe(plumber())
@@ -35,16 +38,17 @@ function sprites () {
   const imgStream = spriteData.img
     .pipe(buffer())
     .pipe(imagemin())
-    .pipe(dest(path.dist.sprite))
-  
+    .pipe(gulpif(flags.watch, dest(path.dev.sprite)))
+    .pipe(gulpif(!flags.watch, dest(path.build.sprite)))
+    .pipe(gulpif(flags.bs, browserSync.stream()))
+
   const cssStream = spriteData.css.pipe(dest('./src/scss/sprite/'))
 
   return merge(imgStream, cssStream)
 }
 
-function spritesSVG () {
-  return (
-    src(path.src.spritesSvg)
+export function spritesSVGTask () {
+  return src(path.src.spritesSvg)
       .pipe(plumber())
       .pipe(svgmin(svgConfigPlugs))
       .pipe(
@@ -54,22 +58,24 @@ function spritesSVG () {
           // templates: {
           //   scss: true
           // },
-          cssFile: '../src/scss/sprite/spriteSvg.scss',
+          // cssFile: '../src/scss/sprite/spriteSvg.scss',
+          cssFile: '../../scss/sprite/spriteSvg.scss',
           svg: {
-            sprite: 'images/sprite/sprite.svg'
+            // sprite: 'images/sprite/sprite.svg'
+            sprite: 'sprite.svg'
           },
           preview: false,
           padding: 10,
           selector: '%f'
         })
       )
-      .pipe(dest(path.dist.spriteSvg))
-  )
+      .pipe(gulpif(flags.watch, dest(path.dev.spriteSvg)))
+      .pipe(gulpif(!flags.watch, dest(path.build.spriteSvg)))
+      .pipe(gulpif(flags.bs, browserSync.stream()))
 }
 
-function symbolsSVG () {
-  return (
-    src(path.src.symbolsSvg)
+export function symbolsSVGTask () {
+  return src(path.src.symbolsSvg)
       .pipe(plumber())
       .pipe(svgmin(svgConfigPlugs))
       .pipe(
@@ -79,10 +85,7 @@ function symbolsSVG () {
           templates: ['default-svg']
         })
       )
-      .pipe(dest(path.dist.symbolsSvg))
-  )
+      .pipe(gulpif(flags.watch, dest(path.dev.symbolsSvg)))
+      .pipe(gulpif(!flags.watch, dest(path.build.symbolsSvg)))
+      .pipe(gulpif(flags.bs, browserSync.stream()))
 }
-
-task('sprites', sprites)
-task('spritesSVG', spritesSVG)
-task('symbolsSVG', symbolsSVG)
