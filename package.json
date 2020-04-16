@@ -1,6 +1,6 @@
 {
   "name": "sbp",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "Стартовый сборшик проектов",
   "main": "gulpfile.babel.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "sbp:minify": "npx gulp minify",
     "sbp:stylelint": "npx stylelint \"src/scss/**/*.scss\" --syntax scss",
     "sbp:eslint": "npx eslint src/js/components/ src/js/main.js",
+    "sbp:htmlvalidate": "npx gulp html && npx html-validate ./build/*.html",
     "echo": "echo \"Echo: not specified\" && exit 1"
   },
   "author": "Dmitriev Maksim and other people",
@@ -30,8 +31,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "svg4everybody": "^2.1.9",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "svg4everybody": "^2.1.9"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -54,6 +55,7 @@
     "gulp-debug": "^4.0.0",
     "gulp-file-include": "^2.1.1",
     "gulp-gh-pages": "^0.5.4",
+    "gulp-html-validate": "git+https://github.com/alte0/gulp-html-validate.git",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "7.0.0",
     "gulp-plumber": "^1.2.1",
@@ -70,6 +72,7 @@
     "gulp-tap": "^2.0.0",
     "gulp-zip": "^5.0.1",
     "gulp.spritesmith": "^6.11.0",
+    "html-validate": "^2.20.0",
     "husky": "^4.2.5",
     "merge-stream": "^2.0.0",
     "posthtml": "^0.12.0",
@@ -78,7 +81,6 @@
     "posthtml-expressions": "^1.3.2",
     "posthtml-extend": "^0.3.0",
     "posthtml-include": "^1.4.2",
-    "posthtml-w3c": "^0.9.0",
     "stylelint": "^13.3.2",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-scss": "^3.16.1",

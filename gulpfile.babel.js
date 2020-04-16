@@ -45,6 +45,7 @@ const copyTask = () => series(fontsTask, imagesTask, iTask);
 
 exports.default = series(noBsTask, defaultTask(), watchTask);
 exports.dev = series(defaultTask(), watchTask, bsTask);
+exports.html = series(minifyTask, noBsTask, noWatchTask, htmlTask);
 exports.build = series(cleanTask, copyTask(), setBuild());
 exports.zip = series(cleanTask, copyTask(), setBuild(), zipArchive);
 exports.deploy = series(cleanTask, copyTask(), setBuild(), deployTask);
