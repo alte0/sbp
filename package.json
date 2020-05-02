@@ -1,6 +1,6 @@
 {
   "name": "sbp",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Стартовый сборшик проектов",
   "main": "gulpfile.babel.js",
   "scripts": {
@@ -11,7 +11,6 @@
     "sbp:minify": "npx gulp minify",
     "sbp:stylelint": "npx stylelint \"src/scss/**/*.scss\" --syntax scss",
     "sbp:eslint": "npx eslint src/js/components/ src/js/main.js",
-    "sbp:htmlvalidate": "npx gulp html && npx html-validate ./build/*.html",
     "echo": "echo \"Echo: not specified\" && exit 1"
   },
   "author": "Dmitriev Maksim and other people",
@@ -72,7 +71,6 @@
     "gulp-zip": "^5.0.1",
     "gulp.spritesmith": "^6.11.0",
     "gulp4-gh-pages": "^0.6.0-6",
-    "html-validate": "^2.20.0",
     "husky": "^4.2.5",
     "merge-stream": "^2.0.0",
     "posthtml": "^0.12.0",
