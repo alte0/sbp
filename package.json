@@ -1,6 +1,6 @@
 {
   "name": "sbp",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "Стартовый сборшик проектов",
   "main": "gulpfile.babel.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "sbp:build": "npx gulp build",
     "sbp:zip": "npx gulp zip",
     "sbp:minify": "npx gulp minify",
-    "sbp:stylelint": "npx stylelint \"src/scss/**/*.scss\" --syntax scss",
+    "sbp:deploy": "npx gulp deploy",
+    "sbp:stylelint": "npx stylelint \"src/scss/**/*.scss\" \"!**/sprite/**\" --syntax scss",
     "sbp:eslint": "npx eslint src/js/components/ src/js/main.js",
     "echo": "echo \"Echo: not specified\" && exit 1"
   },
