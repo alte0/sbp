@@ -8,7 +8,7 @@ import svgmin from 'gulp-svgmin';
 import { svgConfigPlugs } from '../svgConfigPlugs';
 // svgConfigPlugs RUS doc https://github.com/svg/svgo/blob/master/README.ru.md
 
-export function imagesTask () {
+export function imagesTask() {
   return src(path.src.images)
     .pipe(plumber())
     .pipe(
@@ -16,15 +16,15 @@ export function imagesTask () {
         // imagemin.gifsicle({ interlaced: true, optimizationLevel: 1 }),
         imagemin.mozjpeg({ progressive: true }),
         imagemin.optipng({ optimizationLevel: 5 }),
-        imagemin.svgo(svgConfigPlugs)
-      ])
+        imagemin.svgo(svgConfigPlugs),
+      ]),
     )
-    .pipe(dest(path.build.images))
+    .pipe(dest(path.build.images));
 }
 
-export function iTask () {
+export function iTask() {
   return src(path.src.i)
     .pipe(plumber())
     .pipe(svgmin(svgConfigPlugs))
-    .pipe(dest(path.build.i))
+    .pipe(dest(path.build.i));
 }

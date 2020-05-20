@@ -12,11 +12,17 @@ import flags from '../flags';
 import bs from 'browser-sync';
 
 export function jsTask() {
+  const webpackConfig = flags.watch ? webpackConfigDev : webpackConfigProd;
+
   return src('./src/js/main.js')
     .pipe(plumber())
-    .pipe(gulpif(!flags.watch, webpackStream(webpackConfigProd, webpack)))
-    .pipe(gulpif(flags.watch, webpackStream(webpackConfigDev, webpack)))
+
+    .pipe(webpackStream(webpackConfig, webpack))
+    // .pipe(gulpif(flags.watch, webpackStream(webpackConfigDev, webpack)))
     .pipe(gulpif(flags.watch, dest(path.dev.js)))
+
+    // .pipe(gulpif(!flags.watch, webpackStream(webpackConfigProd, webpack)))
     .pipe(gulpif(!flags.watch, dest(path.build.js)))
+
     .pipe(gulpif(flags.bs, bs.stream()))
 }
