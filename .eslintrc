@@ -1,13 +1,19 @@
 {
-    "env": {
-        "browser": true,
-        "node": true
-    },
-    "extends": [
-        "airbnb-base",
-        "plugin:promise/recommended"
-    ],
-    "plugins": [
-        "no-loops"
+  "env": {
+      "browser": true,
+      "node": true
+  },
+  "extends": [
+      "standard",
+      "plugin:promise/recommended"
+  ],
+  "plugins": [
+      "no-loops"
+  ],
+  "rules": {
+    "semi": [
+      "error",
+      "always"
     ]
+  }
 }
