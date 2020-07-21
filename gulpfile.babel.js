@@ -37,10 +37,10 @@ function watchTask(cb) {
 const defaultTask = () => series(
   cleanDevTask,
   parallel(spritesTask, spritesSVGTask, symbolsSVGTask, jsTask, sassTask),
-  htmlTask,
+  htmlTask
 );
 
-const setBuild = () => series(minifyTask, noBsTask, noWatchTask, defaultTask());
+const setBuild = () => series(noBsTask, noWatchTask, defaultTask());
 const copyTask = () => series(fontsTask, imagesTask, iTask);
 
 exports.default = series(noBsTask, defaultTask(), watchTask);

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import { src, dest } from 'gulp';
 import path from '../path';
@@ -15,7 +15,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import cssnano from 'gulp-cssnano';
 import bs from 'browser-sync';
 
-export function sassTask() {
+export function sassTask () {
   return (src(path.src.css)
     .pipe(plumber())
     .pipe(gulpif(flags.bs, sourcemaps.init()))
@@ -23,16 +23,18 @@ export function sassTask() {
     .pipe(sassGlob())
     .pipe(
       stylelint({
-        reporters: [{ formatter: 'string', console: true }]
+        reporters: [
+          { formatter: 'string', console: true }
+        ]
       })
     )
     .pipe(sass().on('error', sass.logError))
-    .pipe(postcss([ autoprefixer() ]))
+    .pipe(postcss([autoprefixer()]))
     .pipe(gulpif(flags.minify, cssnano()))
     .pipe(gulpif(!flags.watch, cssnano()))
     .pipe(gulpif(flags.bs, sourcemaps.write('.')))
     .pipe(gulpif(flags.watch, dest(path.dev.css)))
     .pipe(gulpif(!flags.watch, dest(path.build.css)))
     .pipe(gulpif(flags.bs, bs.stream()))
-  )
+  );
 }
