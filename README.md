@@ -146,7 +146,7 @@ $ npm run sbp:minify или npx gulp minify
 где ```#cloud-computing``` имя файла svg
 <br>Лучше использовать инлайн метод:
 ```
-<!-- indert svg -->
+<!-- insert svg -->
 @@include("../images/symbols-svg/svg-symbols.svg")
 <!-- use -->
 <svg role="img" class="" height="32" width="32">
