@@ -26,7 +26,7 @@
 #### Используемые технологии
 
 * Менеджер пакетов и внешних зависимостей - [npm](https://www.npmjs.com)
-* Git hooks - [husky](https://github.com/typicode/husky)
+* Git hooks - [husky](https://github.com/typicode/husky) (now turn off)
 * Автоматическая сборка - [Gulp 4](http://gulpjs.com)
 * Препроцессор CSS - [Sass](http://sass-lang.com)
 * Шаблонизатор HTML - [PostHTML](https://posthtml.org/)
@@ -78,20 +78,20 @@ SBP/
 ### Установка и сборка проекта
 
 [Node.js](https://nodejs.org) **[(all releases)](https://nodejs.org/en/download/releases/)**.
-Минимаоьная версия nodejs:
-```sh 
-  "engines": {
-    "node": ">= 12.22"
-  }
+Минимальная версия nodejs:
+```
+"engines": {
+  "node": ">= 12.22"
+}
 ```
 
 ### Установите внешние зависимости
-```sh
+```
 $ npm install или npm i
 ```
 ### Работа со сборщиком
 разработка с наблюдением за файлами
-```sh
+```
 $ npm start или npx gulp
 ```
 разработка с наблюдением за файлами с BrowserSync
@@ -117,7 +117,10 @@ $ npm run sbp:minify или npx gulp minify
 ### Для спрайтов
 **Пример для одиночного спрайта на scss:**
 ```sh
-@include sprite($example-1);
+.icon-png {
+  display: inline-block;
+  @include sprite($example-1);
+}
 ```
 где ```$example-1``` имя файла: ```example-1.png``` .
 
@@ -135,9 +138,14 @@ $ npm run sbp:minify или npx gulp minify
 Для ```:hover``` или ```:active``` в имени файла нужно указать ```~ (тильду)```, пример: ```facebook~active.svg```
 
 **Пример для symbol SVG спрайта (не во всех браузерах работает):**
-```<svg class="cloud"><use xlink:href="symbol-svg/svg-symbols.svg#cloud-computing"></use></svg>``` где ```#cloud-computing``` имя файла svg
+```
+<svg class="cloud">
+  <use xlink:href="symbol-svg/svg-symbols.svg#cloud-computing"></use>
+</svg>
+```
+где ```#cloud-computing``` имя файла svg
 <br>Лучше использовать инлайн метод:
-```apacheconf
+```
 <!-- indert svg -->
 @@include("../images/symbols-svg/svg-symbols.svg")
 <!-- use -->
