@@ -122,7 +122,7 @@ $ npm run sbp:minify или npx gulp minify
   @include sprite($example-1);
 }
 ```
-где ```$example-1``` имя файла: ```example-1.png``` .
+где ```$example-1``` набор параметров для файла: ```example-1.png``` .
 
 **Пример для ретина спрайта:**
 ```sh
