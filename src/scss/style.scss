@@ -12,12 +12,16 @@ $minify: false !default;
   $fontsPath: "./fonts/";
 }
 
+.svg-symbol {
+  display:none;
+}
+
 @import "../../node_modules/normalize.css/normalize";
 @import "variables";
 @import "fonts";
 @import "common";
-@import "sprite/sprite.scss";
-@import "sprite/spriteSvg.scss";
+@import "sprite/sprite";
+@import "sprite/spriteSvg";
 @import "blocks/**/*";
 // @import "../../node_modules/slick-carousel/slick/slick.scss";
 
@@ -42,4 +46,7 @@ $minify: false !default;
 //body {
 //    background-color: green;
 //}
-
+.icon-png {
+  display: inline-block;
+  @include sprite($example-1);
+}

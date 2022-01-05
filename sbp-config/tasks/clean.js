@@ -7,5 +7,6 @@ export function cleanTask() {
 }
 
 export function cleanDevTask() {
-  return del([`${path.cleanHtml}`, `${path.cleanJs}`, `${path.cleanCss}`, `${path.dev.sprite}`, `${path.dev.spriteSvg}`, `${path.dev.symbolsSvg}`]);
+  return cleanTask();
+  // return del([`${path.cleanHtml}`, `${path.cleanJs}`, `${path.cleanCss}`, `${path.dev.sprite}`, `${path.dev.spriteSvg}`, `${path.dev.symbolsSvg}`]);
 }

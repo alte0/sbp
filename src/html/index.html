@@ -1,15 +1,27 @@
 <extends src="base.html">
+  <!-- <block name="title">ddddГfffлавная</block> -->
   <block name="header" >
     <include src="header.html" locals='{}'></include>
   </block>
   <block name="main">
     <include src="ul.html" locals='{"array":["li elment", "li elment", "li elment" ]}'></include>
     <include src="ul.html" locals='@@include("ul.json")'></include>
-    <h1>ewe</h1>
+    <h1>ewessss fwefwe</h1>
     <!-- не валидный код -->
     <h2 class="ef">
-      <p>efw</p>
+      <p>lorem text !!</p>
     </h2>
     <!-- не валидный код -->
+    <p>sprite svg</p>
+    <span class="icon facebook"></span>
+    <p>sprite png</p>
+    <span class="icon-png"></span>
+    <p>symbol svg</p>
+    <!-- insert svg -->
+    @@include("../images/symbols-svg/svg-symbols.svg")
+    <!-- use -->
+    <svg role="img" class="" height="32" width="32">
+      <use xlink:href="#cloud"></use>
+    </svg>
   </block>
 </extends>

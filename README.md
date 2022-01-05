@@ -78,10 +78,10 @@ SBP/
 ### Установка и сборка проекта
 
 [Node.js](https://nodejs.org) **[(all releases)](https://nodejs.org/en/download/releases/)**.
+Минимаоьная версия nodejs:
 ```sh 
-"engines": {
-    "node": ">= 10.19.0",
-    "npm": ">= 6.13.4"
+  "engines": {
+    "node": ">= 12.22"
   }
 ```
 
@@ -132,11 +132,19 @@ $ npm run sbp:minify или npx gulp minify
 .icon.svg-arr-black;
 ```
 где ```.icon``` обшее имя svg спрайтов, а ```arr-black``` это имя файла. 
-Для ```:hover``` или ```:active``` в имени файла нужно указать ```~ (тильду)```, ппример: ```facebook~active.svg```
+Для ```:hover``` или ```:active``` в имени файла нужно указать ```~ (тильду)```, пример: ```facebook~active.svg```
 
-**Пример для symbol SVG спрайта:**
+**Пример для symbol SVG спрайта (не во всех браузерах работает):**
 ```<svg class="cloud"><use xlink:href="symbol-svg/svg-symbols.svg#cloud-computing"></use></svg>``` где ```#cloud-computing``` имя файла svg
-
+<br>Лучше использовать инлайн метод:
+```apacheconf
+<!-- indert svg -->
+@@include("../images/symbols-svg/svg-symbols.svg")
+<!-- use -->
+<svg role="img" class="" height="32" width="32">
+  <use xlink:href="#cloud"></use>
+</svg>
+```
 ## Общие принципы работы
 
 ```

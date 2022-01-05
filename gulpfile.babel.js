@@ -36,7 +36,8 @@ function watchTask(cb) {
 // ===========================================
 const defaultTask = () => series(
   cleanDevTask,
-  parallel(spritesTask, spritesSVGTask, symbolsSVGTask, jsTask, sassTask),
+  parallel(spritesTask, spritesSVGTask, symbolsSVGTask),
+  parallel(jsTask, sassTask),
   htmlTask
 );
 

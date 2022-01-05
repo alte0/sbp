@@ -16,7 +16,7 @@ import * as pathConf from '../path';
 import valid from 'gulp-html-validate';
 
 export function htmlTask() {
-  let path = './src/html/blocks/';
+  let path = './src/html/components/';
 
   const configBem = {
     elemPrefix: '__',
@@ -40,8 +40,8 @@ export function htmlTask() {
   };
 
   const plugins = [
-    include(configInclude),
     extend(configExtend),
+    include(configInclude),
     expressions(),
     bem(configBem),
     beautify(configBeautify)
