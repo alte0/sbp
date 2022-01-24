@@ -1,0 +1,20 @@
+{
+  "array": [
+    {
+      "name": "Все файлы",
+      "href": "/"
+    },
+    {
+      "name": "Главная",
+      "href": "/index.html"
+    },
+    {
+      "name": "Примеры",
+      "href": "/examples.html"
+    },
+    {
+      "name": "Тест",
+      "href": "/test.html"
+    }
+  ]
+}
