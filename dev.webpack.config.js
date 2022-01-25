@@ -11,5 +11,10 @@ module.exports = merge(common, {
     chunkFilename: 'vendor.bundle.js'
   },
   devtool: 'inline-source-map',
-  plugins: [new webpack.HotModuleReplacementPlugin()]
-})
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+  optimization: {
+    splitChunks: {
+      minSize: 1000
+    }
+  }
+});

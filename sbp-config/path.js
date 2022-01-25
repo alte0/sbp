@@ -22,7 +22,7 @@ module.exports = {
   },
   src: {
     html: 'src/html/*.html',
-    js: 'src/js/components/*.js',
+    js: './src/js/main.js',
     css: ['src/scss/style.scss'],
     images: 'src/images/**/*.*',
     i: 'src/i/**/*.*',

@@ -14,4 +14,4 @@ module.exports = merge(common, {
     sideEffects: true
   },
   devtool: 'source-map'
-})
+});
