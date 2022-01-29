@@ -26,6 +26,9 @@ function watchTask (cb) {
     // watch([path.watch.symbolsSvg], series(symbolsSVGTask, htmlTask));
     watch([path.watch.css], series(sassTask));
     watch(path.watch.js, series(jsTask));
+    watch(path.watch.i, series(iTask));
+    watch(path.watch.images, series(imagesTask));
+    watch(path.watch.fonts, series(fontsTask));
   } else {
     console.log('=========> WATCH - OFF!');
   }

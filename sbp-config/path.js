@@ -24,7 +24,6 @@ module.exports = {
     html: 'src/html/*.html',
     js: './src/js/main.js',
     css: ['src/scss/style.scss'],
-    // images: 'src/images/**/*.*',
     images: ['src/images/**/*.*', '!src/images/sprite/*', '!src/images/sprite-svg/*', '!src/images/symbols-svg/*'],
     i: 'src/i/**/*.*',
     fonts: 'src/fonts/**/*.*',
@@ -39,7 +38,10 @@ module.exports = {
     css: 'src/scss/**/*.scss',
     sprites: 'src/sprites-png/*.png',
     spritesSvg: 'src/sprites-svg/*.svg',
-    symbolsSvg: 'src/symbol-svg/*.svg'
+    symbolsSvg: 'src/symbol-svg/*.svg',
+    images: ['src/images/**/*.*', '!src/images/sprite/*', '!src/images/sprite-svg/*', '!src/images/symbols-svg/*'],
+    i: 'src/i/**/*.*',
+    fonts: 'src/fonts/**/*.*'
   },
   cleanFolder: './build'/*,
   cleanHtml: './src/!*.html',
