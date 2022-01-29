@@ -2,7 +2,7 @@
 import { series, parallel, watch } from 'gulp';
 import path from './sbp-config/path';
 import flags from './sbp-config/flags';
-import { minifyTask, noBsTask, noWatchTask, SetComressImages } from './sbp-config/tasks/flags-tasks';
+import { minifyTask, noBsTask, noWatchTask, SetBuild } from './sbp-config/tasks/flags-tasks';
 import { cleanTask, cleanDevTask } from './sbp-config/tasks/clean';
 import { htmlTask } from './sbp-config/tasks/html';
 import { fontsTask } from './sbp-config/tasks/fonts';
@@ -39,9 +39,9 @@ function watchTask (cb) {
 // All tasks
 // ===========================================
 // const copyTask = () => series(fontsTask, imagesTask, iTask);
-const copyTask = (isCompressImages) => {
-  if (isCompressImages) {
-    return series(SetComressImages, fontsTask, imagesTask, iTask);
+const copyTask = (isBuild) => {
+  if (isBuild) {
+    return series(SetBuild, fontsTask, imagesTask, iTask);
   }
 
   return series(fontsTask, imagesTask, iTask);

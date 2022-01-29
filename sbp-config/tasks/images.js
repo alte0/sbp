@@ -14,7 +14,7 @@ export function imagesTask () {
   return src(path.src.images)
     .pipe(plumber())
     .pipe(gulpif(
-      flags.compressImage,
+      flags.build,
       imagemin([
         // imagemin.gifsicle({ interlaced: true, optimizationLevel: 1 }),
         imagemin.mozjpeg({ progressive: true }),

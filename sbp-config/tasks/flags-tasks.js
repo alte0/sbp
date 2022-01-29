@@ -18,8 +18,8 @@ export function noBsTask (done) {
   done();
 }
 
-export function SetComressImages (done) {
-  flags.compressImage = true;
-  console.log('=========> Compress images (src/images/) - ', flags.bs);
+export function SetBuild (done) {
+  flags.build = true;
+  console.log('=========> Build ACTIVATE - ', flags.bs);
   done();
 }
