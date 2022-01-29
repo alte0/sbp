@@ -14,6 +14,7 @@ import merge from 'merge-stream';
 import browserSync from 'browser-sync';
 import gulpif from 'gulp-if';
 import flags from '../flags';
+// import debug from 'gulp-debug';
 
 export function spritesTask () {
   const fileNameSprite = 'sprite.png';
@@ -59,8 +60,7 @@ export function spritesSVGTask () {
         // templates: {
         //   scss: true
         // },
-        cssFile: '../../../src/scss/sprite/spriteSvg.scss',
-        // cssFile: '../../scss/sprite/spriteSvg.scss',
+        cssFile: '../src/scss/sprite/spriteSvg.scss',
         svg: {
           sprite: 'images/sprite-svg/sprite.svg'
           // sprite: 'sprite.svg'

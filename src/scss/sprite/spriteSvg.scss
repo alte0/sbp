@@ -8,7 +8,7 @@
     display: inline-block;
     background-image: url("../images/sprite-svg/sprite.svg");
     background-repeat: no-repeat;
-    background-size: 4.2em 26.4em;
+    background-size: 8.4em 34.8em;
 }
 
 .no-svg .icon:before {
@@ -44,25 +44,16 @@
 
 
 
-  .icon.facebook:before {
+  .icon.binoculars-eye:before {
       background-position: -1em -10.6em;
-      width: 2.2em;
-      height: 2.2em;
+      width: 6.4em;
+      height: 6.4em;
   }
 
 
 
 
-  .icon.facebook-white:before {
-      background-position: -1em -14.8em;
-      width: 2.2em;
-      height: 2.2em;
-  }
-
-
-
-
-  .icon.facebook:active:before {
+  .icon.facebook:before {
       background-position: -1em -19em;
       width: 2.2em;
       height: 2.2em;
@@ -71,8 +62,26 @@
 
 
 
-  .icon.facebook:hover:before {
+  .icon.facebook-white:before {
       background-position: -1em -23.2em;
+      width: 2.2em;
+      height: 2.2em;
+  }
+
+
+
+
+  .icon.facebook:active:before {
+      background-position: -1em -27.4em;
+      width: 2.2em;
+      height: 2.2em;
+  }
+
+
+
+
+  .icon.facebook:hover:before {
+      background-position: -1em -31.6em;
       width: 2.2em;
       height: 2.2em;
   }
