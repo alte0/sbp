@@ -12,6 +12,7 @@
     "sbp:deploy": "npx gulp deploy",
     "sbp:stylelint": "npx stylelint \"src/scss/**/*.scss\" \"!**/sprite/**\" --syntax scss",
     "sbp:eslint": "npx eslint src/js/components/ src/js/main.js",
+    "sbp:browsers": "npx autoprefixer",
     "echo": "echo \"Echo: not specified\" && exit 1"
   },
   "author": "Dmitriev Maksim and other people",
@@ -37,6 +38,7 @@
     "autoprefixer": "^10.4.1",
     "babel-loader": "^8.1.0",
     "browser-sync": "^2.27.7",
+    "browserslist": "^4.19.1",
     "del": "^6.0.0",
     "eslint": "^7.5.0",
     "eslint-config-standard": "^14.1.1",

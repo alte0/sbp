@@ -12,7 +12,8 @@
     "sbp:zip": "npx gulp zip",
     "sbp:minify": "npx gulp minify",
     "sbp:stylelint": "npx stylelint \"src/scss/**/*.scss\" --syntax scss",
-    "sbp:eslint": "npx eslint src/js/components/ src/js/main.js"
+    "sbp:eslint": "npx eslint src/js/components/ src/js/main.js",
+    "sbp:browsers": "npx autoprefixer"
   }
 ```
 #### Рекомендация по разработке:
@@ -105,6 +106,10 @@ $ npm run sbp:prod или npx gulp build
 сборка для продакшена с формированием архива
 ```sh
 $ npm run sbp:zip или npx gulp zip
+```
+проверка версий поддержки браузеров 
+```sh
+$ npm run sbp:browsers
 ```
 <!-- сборка для продакшена с перенесением стилей в тэг style
 ```sh
