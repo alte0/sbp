@@ -34,7 +34,7 @@
 * Run webpack as a stream to conveniently integrate with gulp. - [Webpack-stream](https://github.com/shama/webpack-stream)
 * ECMAScript 6+, config - [eslint-config-airbnb-base](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base), [Airbnb's style guide.](https://github.com/airbnb/javascript)
 * Спрайты - [gulp.spritesmith](https://github.com/twolfson/gulp.spritesmith)
-* svg symbol - [gulp-svg-symbols](https://github.com/Hiswe/gulp-svg-symbols)
+* svg symbol (turn off) - [gulp-svg-symbols](https://github.com/Hiswe/gulp-svg-symbols)
 * Дополнительная поддержка SVG - [svg4everybody](https://github.com/jonathantneal/svg4everybody)
 
 

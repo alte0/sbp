@@ -9,7 +9,8 @@ import { fontsTask } from './sbp-config/tasks/fonts';
 import { imagesTask, iTask } from './sbp-config/tasks/images';
 import { jsTask } from './sbp-config/tasks/js';
 import { sassTask } from './sbp-config/tasks/sass';
-import { spritesTask, spritesSVGTask, symbolsSVGTask } from './sbp-config/tasks/sprites';
+// import { spritesTask, spritesSVGTask, symbolsSVGTask } from './sbp-config/tasks/sprites';
+import { spritesTask, spritesSVGTask } from './sbp-config/tasks/sprites';
 import { zipArchive } from './sbp-config/tasks/zipArchive';
 import { bsTask } from './sbp-config/tasks/server';
 import { deployTask } from './sbp-config/tasks/deploy';
@@ -22,7 +23,7 @@ function watchTask(cb) {
     watch([path.watch.dataJson], series(htmlTask));
     watch([path.watch.sprites], series(spritesTask));
     watch([path.watch.spritesSvg], series(spritesSVGTask));
-    watch([path.watch.symbolsSvg], series(symbolsSVGTask));
+    // watch([path.watch.symbolsSvg], series(symbolsSVGTask, htmlTask));
     watch([path.watch.css], series(sassTask));
     watch(path.watch.js, series(jsTask));
   } else {
@@ -36,7 +37,8 @@ function watchTask(cb) {
 // ===========================================
 const defaultTask = () => series(
   cleanDevTask,
-  parallel(spritesTask, spritesSVGTask, symbolsSVGTask),
+  // parallel(spritesTask, spritesSVGTask, symbolsSVGTask),
+  parallel(spritesTask, spritesSVGTask),
   parallel(jsTask, sassTask),
   htmlTask
 );
