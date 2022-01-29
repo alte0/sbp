@@ -16,15 +16,17 @@ export function imagesTask() {
         // imagemin.gifsicle({ interlaced: true, optimizationLevel: 1 }),
         imagemin.mozjpeg({ progressive: true }),
         imagemin.optipng({ optimizationLevel: 5 }),
-        imagemin.svgo(svgConfigPlugs),
-      ]),
+        // imagemin.svgo(svgConfigPlugs),
+        imagemin.svgo()
+      ])
     )
     .pipe(dest(path.build.images));
 }
 
-export function iTask() {
+export function iTask () {
   return src(path.src.i)
     .pipe(plumber())
-    .pipe(svgmin(svgConfigPlugs))
+    // .pipe(svgmin(svgConfigPlugs))
+    .pipe(svgmin())
     .pipe(dest(path.build.i));
 }
