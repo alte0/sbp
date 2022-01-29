@@ -17,7 +17,7 @@ import { deployTask } from './sbp-config/tasks/deploy';
 // ===========================================
 // watching task
 // ===========================================
-function watchTask(cb) {
+function watchTask (cb) {
   if (flags.watch) {
     watch([path.watch.html], series(htmlTask));
     watch([path.watch.dataJson], series(htmlTask));
@@ -35,8 +35,11 @@ function watchTask(cb) {
 // ===========================================
 // All tasks
 // ===========================================
+const copyTask = () => series(fontsTask, imagesTask, iTask);
+
 const defaultTask = () => series(
   cleanDevTask,
+  copyTask(),
   // parallel(spritesTask, spritesSVGTask, symbolsSVGTask),
   parallel(spritesTask, spritesSVGTask),
   parallel(jsTask, sassTask),
@@ -44,7 +47,6 @@ const defaultTask = () => series(
 );
 
 const setBuild = () => series(noBsTask, noWatchTask, defaultTask());
-const copyTask = () => series(fontsTask, imagesTask, iTask);
 
 exports.default = series(noBsTask, defaultTask(), watchTask);
 exports.dev = series(defaultTask(), watchTask, bsTask);
