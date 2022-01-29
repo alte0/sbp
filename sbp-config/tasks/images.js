@@ -1,17 +1,20 @@
-'use strict'
+'use strict';
 
 import { src, dest } from 'gulp';
 import path from '../path';
 import plumber from 'gulp-plumber';
 import imagemin from 'gulp-imagemin';
 import svgmin from 'gulp-svgmin';
-import { svgConfigPlugs } from '../svgConfigPlugs';
+// import { svgConfigPlugs } from '../svgConfigPlugs';
+import gulpif from 'gulp-if';
+import flags from '../flags';
 // svgConfigPlugs RUS doc https://github.com/svg/svgo/blob/master/README.ru.md
 
-export function imagesTask() {
+export function imagesTask () {
   return src(path.src.images)
     .pipe(plumber())
-    .pipe(
+    .pipe(gulpif(
+      flags.compressImage,
       imagemin([
         // imagemin.gifsicle({ interlaced: true, optimizationLevel: 1 }),
         imagemin.mozjpeg({ progressive: true }),
@@ -19,7 +22,7 @@ export function imagesTask() {
         // imagemin.svgo(svgConfigPlugs),
         imagemin.svgo()
       ])
-    )
+    ))
     .pipe(dest(path.build.images));
 }
 
