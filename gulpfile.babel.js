@@ -2,7 +2,7 @@
 import { series, parallel, watch } from 'gulp';
 import path from './sbp-config/path';
 import flags from './sbp-config/flags';
-import { minifyTask, noBsTask, noWatchTask, SetBuild } from './sbp-config/tasks/flags-tasks';
+import { minifyTask, noBsTask, noWatchTask, SetProd } from './sbp-config/tasks/flags-tasks';
 import { cleanTask, cleanDevTask } from './sbp-config/tasks/clean';
 import { htmlTask } from './sbp-config/tasks/html';
 import { fontsTask } from './sbp-config/tasks/fonts';
@@ -39,9 +39,9 @@ function watchTask (cb) {
 // All tasks
 // ===========================================
 // const copyTask = () => series(fontsTask, imagesTask, iTask);
-const copyTask = (isBuild) => {
-  if (isBuild) {
-    return series(SetBuild, fontsTask, imagesTask, iTask);
+const copyTask = (isProd) => {
+  if (isProd) {
+    return series(SetProd, fontsTask, imagesTask, iTask);
   }
 
   return series(fontsTask, imagesTask, iTask);
@@ -62,5 +62,5 @@ exports.default = series(noBsTask, defaultTask(), watchTask);
 exports.dev = series(defaultTask(), watchTask, bsTask);
 exports.html = series(minifyTask, noBsTask, noWatchTask, htmlTask);
 exports.build = series(cleanTask, copyTask(true), setBuild());
-exports.zip = series(cleanTask, copyTask(), setBuild(), zipArchive);
-exports.deploy = series(cleanTask, copyTask(), setBuild(), deployTask);
+exports.zip = series(cleanTask, copyTask(true), setBuild(), zipArchive);
+exports.deploy = series(cleanTask, copyTask(true), setBuild(), deployTask);

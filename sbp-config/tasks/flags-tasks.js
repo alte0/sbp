@@ -18,8 +18,8 @@ export function noBsTask (done) {
   done();
 }
 
-export function SetBuild (done) {
-  flags.build = true;
-  console.log('=========> Build ACTIVATE - ', flags.bs);
+export function SetProd (done) {
+  flags.prod = true;
+  console.log('=========> Build ACTIVATE - ', flags.prod);
   done();
 }
