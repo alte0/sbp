@@ -3,7 +3,7 @@ import { series, parallel, watch } from 'gulp';
 import path from './sbp-config/path';
 import flags from './sbp-config/flags';
 import { minifyTask, noBsTask, noWatchTask, SetProd } from './sbp-config/tasks/flags-tasks';
-import { cleanTask, cleanDevTask } from './sbp-config/tasks/clean';
+import { cleanTask, cleanDevTask, delTask } from './sbp-config/tasks/clean';
 import { htmlTask } from './sbp-config/tasks/html';
 import { fontsTask } from './sbp-config/tasks/fonts';
 import { imagesTask, iTask } from './sbp-config/tasks/images';
@@ -26,9 +26,9 @@ function watchTask (cb) {
     // watch([path.watch.symbolsSvg], series(symbolsSVGTask, htmlTask));
     watch([path.watch.css], series(sassTask));
     watch(path.watch.js, series(jsTask));
-    watch(path.watch.i, series(iTask));
-    watch(path.watch.images, series(imagesTask));
-    watch(path.watch.fonts, series(fontsTask));
+    watch(path.watch.i, series(() => delTask(path.build.i), iTask));
+    watch(path.watch.images, series(() => delTask(path.build.images), imagesTask));
+    watch(path.watch.fonts, series(() => delTask(path.build.fonts), fontsTask));
   } else {
     console.log('=========> WATCH - OFF!');
   }
