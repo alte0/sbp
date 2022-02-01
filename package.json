@@ -8,11 +8,10 @@
     "sbp:dev": "npx gulp dev",
     "sbp:build": "npx gulp build",
     "sbp:zip": "npx gulp zip",
-    "sbp:minify": "npx gulp minify",
     "sbp:deploy": "npx gulp deploy",
     "sbp:stylelint": "npx stylelint \"src/scss/**/*.scss\" \"!**/sprite/**\" --syntax scss",
     "sbp:eslint": "npx eslint src/js/components/ src/js/main.js",
-    "sbp:browsers": "npx autoprefixer",
+    "sbp:browsers": "npx browserslist \"> 1%, last 2 years, Firefox ESR, not dead\"",
     "echo": "echo \"Echo: not specified\" && exit 1"
   },
   "author": "Dmitriev Maksim and other people",
@@ -23,7 +22,7 @@
   "engines": {
     "node": ">= 12.22"
   },
-  "browserslist": "last 4 versions, Firefox ESR, not ie <= 10",
+  "browserslist": "> 1%, last 2 years, Firefox ESR, not dead",
   "license": "MIT",
   "private": true,
   "dependencies": {
