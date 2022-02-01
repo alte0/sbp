@@ -38,7 +38,6 @@ function watchTask (cb) {
 // ===========================================
 // All tasks
 // ===========================================
-// const copyTask = () => series(fontsTask, imagesTask, iTask);
 const copyTask = (isProd) => {
   if (isProd) {
     return series(SetProd, fontsTask, imagesTask, iTask);
@@ -60,7 +59,7 @@ const setBuild = () => series(noBsTask, noWatchTask, defaultTask());
 
 exports.default = series(noBsTask, defaultTask(), watchTask);
 exports.dev = series(defaultTask(), watchTask, bsTask);
-exports.html = series(minifyTask, noBsTask, noWatchTask, htmlTask);
+// exports.html = series(minifyTask, noBsTask, noWatchTask, htmlTask);
 exports.build = series(cleanTask, copyTask(true), setBuild());
 exports.zip = series(cleanTask, copyTask(true), setBuild(), zipArchive);
 exports.deploy = series(cleanTask, copyTask(true), setBuild(), deployTask);
