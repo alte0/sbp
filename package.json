@@ -11,7 +11,8 @@
     "sbp:deploy": "npx gulp deploy",
     "sbp:stylelint": "npx stylelint \"src/scss/**/*.scss\" \"!**/sprite/**\" --syntax scss",
     "sbp:eslint": "npx eslint src/js/components/ src/js/main.js",
-    "sbp:browsers": "npx browserslist \"> 1%, last 2 years, Firefox ESR, not dead\"",
+    "sbp:browsers": "npx browserslist",
+    "sbp:browsers-update-db": "npx browserslist@latest --update-db",
     "echo": "echo \"Echo: not specified\" && exit 1"
   },
   "author": "Dmitriev Maksim and other people",
@@ -22,7 +23,9 @@
   "engines": {
     "node": ">= 12.22"
   },
-  "browserslist": "> 1%, last 2 years, Firefox ESR, not dead",
+  "browserslist": [
+    "defaults"
+  ],
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -34,7 +37,7 @@
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "@babel/register": "^7.10.5",
-    "autoprefixer": "^10.4.1",
+    "autoprefixer": "^10.4.2",
     "babel-loader": "^8.1.0",
     "browser-sync": "^2.27.7",
     "browserslist": "^4.19.1",
@@ -80,7 +83,7 @@
     "posthtml-include": "^1.7.2",
     "sass": "^1.45.2",
     "vinyl-buffer": "^1.0.1",
-    "webpack": "^4.43.0",
+    "webpack": "4.46.0",
     "webpack-merge": "^5.0.9",
     "webpack-stream": "^5.2.1"
   }
